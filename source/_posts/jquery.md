@@ -11,6 +11,112 @@ categories: jQuery
 
 <!-- more -->
 
+jQuery 是一个javascript库
+库可以简单理解成一堆以某种方式组织起来的，方便，易用的函数的集合。
+
+
+## jQuery的优点
+
+1.全面解决PC端的兼容性问题
+2.语法精炼，性能好，插件库非常庞大。
+
+## jQuery版本号之间的区别
+
+1.xxx->1.12;  支持ie8
+2.0;          彻底的放弃了对ie<10的支持，转向移动端。
+
+
+## jQuery原理
+1.new 的时候究竟发生了什么
+  * 构建一个空对象{}
+  * mao.call({})把mao 那个函数作为这个空对象的临时方法调用一次
+  * 把mao 那个函数对象身上的prototype那个属性拿来,作为自己原型链中的一条
+  * 返回最终的对象
+2.对象的原形链
+3.函数对象身上一个属性(prototype)和一个方法(call)
+4.this的指向
+  以jQuery函数为原型构造的那个对象
+
+```javascript
+(function(){
+    var jQuery=function(selector){
+        var els=document.querySelectorAll(selector);
+        for( var i = 0 ; i < els.length ; i ++){
+            this[i]=els[i];
+        }
+         this.length=els.length;
+    }
+	jQuery.prototype.addClass=function(str){
+        for ( var i =0 ; i < this.length ; i ++){
+            this[i].classList.add(str);
+        }
+    }
+	var $=function(selector){
+        return new jQuery(selector)
+	}
+	window.$=$;
+})()
+```
+## jQuery 中大多数方法都会返回一个jQuery集合;
+* 操作集合的方法返回的就是原集合
+* 对集合做过过滤或者导致集合改变的一些方法返回改变后的jQuery集合
+* $ .append 这一类方法，当涉及到创建DOM对象时，他们会返回创建完成后的一个jQuery集合
+所以在jQuery中链式调用很常见
+$函数能接受的参数类型以及对应的返回值
+
+```javascript
+$('#selectors h1')
+.width(100)
+.height(100)
+.css('color','red')
+.position(); //链条在这里断
+```
+
+* null      jQuery对象
+* 数组,对象  处理过的jQuery对象
+* 选择器
+* html标签
+* DOM对象
+* DOM集合
+* 函数
+
+##jQuery中的方法
+jQuery中的方法分两类：
+1.直接出现在jQuery函数对象身上，是一些基础性质的工具函数
+2.出现在jQuery.fn函数对象的原型链上，用来批量操作jQuery集合中的dom元素
+
+大部分方法重载很严重
+```javascript
+$('li').css('width') //取出选中集合中第一个元素的宽度+px
+$('li').css('width') //设置集合中的所有元素宽度为200px
+$('li').css({width:200,height:300,border:'1px solid black'}) //给选中集合中的所有元素加上传入对象的所有CSS样式
+$('li').css('width',function(){
+  return Math.random();
+})
+//给集合中的每个元素添加'width'这个属性,每一个元素的width属性的值由第二个参数传入的函数来计算,也就意味着，jQuery会对集合中的每一个元素调用用户传入的回调函数 调用的时候会传入两个参数，一个是当前元素在集合的位置(0,1,2,3)，另外一个是当前元素现有的'width'值
+$('li').css(
+  width:function(){return Math.random},
+  height:function(){return Math.random},
+  backgroundColor:function(i){return colors[i]}
+)
+
+jQuery库设计理念
+1.解决兼容性问题
+2.让从页面中查找元素变得更轻松
+3.提供很多内置方法 使对dom对象的操作变得更轻松
+
+css
+addClass  这些方法对过内置的遍历去操作每一个dom元素
+jQuery不希望我们在循环中使用这些内置方法
+1.给集合中的每一个dom元素设置同样的值或行为
+2.给集合中的每一个dom元素设置不同的值或行为
+
+```javascript
+var els=document.querySelectorAll('.item');
+for(var i = 0; i < els.length; i++){
+  $(els[i]).addClass('aa')
+}
+```
 ## 给jquery添加一个字符串前后换位置的函数
 ```javascript
 $.extend({'reversestring':function(s){
@@ -19,7 +125,7 @@ $.extend({'reversestring':function(s){
 ```
 
 
-jQuery插件
+## jQuery插件
 1、引入jQuery
 2、引入插件 jquery.插件名.js
 3、$('.lunbo').插件名();
@@ -111,113 +217,6 @@ var jQuery={
 	   css:fn,
 	   prop:fn,
 	   ...
-}
-```
-
-jQuery 是一个javascript库
-库可以简单理解成一堆以某种方式组织起来的，方便，易用的函数的集合。
-
-
-jQuery的优点
-
-1.全面解决PC端的兼容性问题
-2.语法精炼，性能好，插件库非常庞大。
-
-jQuery版本号之间的区别
-
-1.xxx->1.12;  支持ie8
-2.0;          彻底的放弃了对ie<10的支持，转向移动端。
-3.0;
-
-
-##jQuery原理
-1.new 的时候究竟发生了什么
-  * 构建一个空对象{}
-  * mao.call({})把mao 那个函数作为这个空对象的临时方法调用一次
-  * 把mao 那个函数对象身上的prototype那个属性拿来,作为自己原型链中的一条
-  * 返回最终的对象
-2.对象的原形链
-3.函数对象身上一个属性(prototype)和一个方法(call)
-4.this的指向
-  以jQuery函数为原型构造的那个对象
-
-```javascript
-(function(){
-    var jQuery=function(selector){
-        var els=document.querySelectorAll(selector);
-        for( var i = 0 ; i < els.length ; i ++){
-            this[i]=els[i];
-        }
-         this.length=els.length;
-    }
-	jQuery.prototype.addClass=function(str){
-        for ( var i =0 ; i < this.length ; i ++){
-            this[i].classList.add(str);
-        }
-    }
-	var $=function(selector){
-        return new jQuery(selector)
-	}
-	window.$=$;
-})()
-```
-jQuery 中大多数方法都会返回一个jQuery集合;
-* 操作集合的方法返回的就是原集合
-* 对集合做过过滤或者导致集合改变的一些方法返回改变后的jQuery集合
-* $ .append 这一类方法，当涉及到创建DOM对象时，他们会返回创建完成后的一个jQuery集合
-所以在jQuery中链式调用很常见
-$函数能接受的参数类型以及对应的返回值
-
-```javascript
-$('#selectors h1')
-.width(100)
-.height(100)
-.css('color','red')
-.position(); //链条在这里断
-```
-
-* null      jQuery对象
-* 数组,对象  处理过的jQuery对象
-* 选择器
-* html标签
-* DOM对象
-* DOM集合
-* 函数
-
-##jQuery中的方法
-jQuery中的方法分两类：
-1.直接出现在jQuery函数对象身上，是一些基础性质的工具函数
-2.出现在jQuery.fn函数对象的原型链上，用来批量操作jQuery集合中的dom元素
-
-大部分方法重载很严重
-```javascript
-$('li').css('width') //取出选中集合中第一个元素的宽度+px
-$('li').css('width') //设置集合中的所有元素宽度为200px
-$('li').css({width:200,height:300,border:'1px solid black'}) //给选中集合中的所有元素加上传入对象的所有CSS样式
-$('li').css('width',function(){
-  return Math.random();
-})
-//给集合中的每个元素添加'width'这个属性,每一个元素的width属性的值由第二个参数传入的函数来计算,也就意味着，jQuery会对集合中的每一个元素调用用户传入的回调函数 调用的时候会传入两个参数，一个是当前元素在集合的位置(0,1,2,3)，另外一个是当前元素现有的'width'值
-$('li').css(
-  width:function(){return Math.random},
-  height:function(){return Math.random},
-  backgroundColor:function(i){return colors[i]}
-)
-
-jQuery库设计理念
-1.解决兼容性问题
-2.让从页面中查找元素变得更轻松
-3.提供很多内置方法 使对dom对象的操作变得更轻松
-
-css
-addClass  这些方法对过内置的遍历去操作每一个dom元素
-jQuery不希望我们在循环中使用这些内置方法
-1.给集合中的每一个dom元素设置同样的值或行为
-2.给集合中的每一个dom元素设置不同的值或行为
-```javascript
-var els=document.querySelectorAll('.item');
-for(var i = 0; i < els.length; i++){
-  $(els[i]).addClass('aa')
 }
 ```
 

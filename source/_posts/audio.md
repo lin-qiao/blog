@@ -9,17 +9,17 @@ categories: html5
 
 <!-- more -->
 
-##属性
+## 属性
 * audio.volume 读写音量
 * audio.src    读写地址
 * audio.currentTime 读写歌曲当前的播放时常
 * audio.duration 读 歌曲的总长度
 * audio.paused 只读 布尔类型 是否处于暂停状态
 * audio.ended  只读 布尔类型 是否播放完毕
-##方法
+## 方法
 audio.play()   让歌曲开始播放
 audio.pause()  歌曲暂停
-##事件
+## 事件
 audio.oncanplay=fn()  当歌曲下载完之后调用fn
 audio.onvolumechange=fn() 当audio.volume变换时调用
 audio.onplay=fn()          当歌曲开始后调用
