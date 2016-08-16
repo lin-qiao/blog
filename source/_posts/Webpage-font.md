@@ -17,7 +17,14 @@ body{
   word-break: break-all;  /*控制标点不在第一个字显示*/
 }
 ```
+## 开头空两个字符并两端对齐
 
+```css
+body{
+  text-indent: 2em;
+  word-break: break-all;
+}
+```
 ## 实现div两端对齐
 ```css
 div{
