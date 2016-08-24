@@ -189,8 +189,123 @@ $ hexo deploy
 
 详细步骤可以参考网上的指南。
 
-## 四、 优化部署与管理
-### 4.1 概述
+提示：上述搭建步骤大量参考了yangruihan的博客，如果你对搭建过程还有疑问，可以查看他的博文[如何利用GitHub Pages和Hexo快速搭建个人博客](http://sunwhut.com/2015/10/30/buildBlog/)
+
+### 3.3 发表博文
+
+辛苦了这么久，终于回到我们搭建博客最初的目标–写作，现在来看看怎么写博文并发表吧。
+
+#### 3.3.1 新建博文
+
+我们可以使用命令新建一篇博文,使用 Git Shell 进入 Hexo 文件夹，输入以下命令：
+
+```bash
+hexo new "文章题目"
+```
+
+* 命令执行完后，就会发现在 Hexo\source_posts 目录中多了一个文件博文名.md，这就是我们刚才新建的博文。
+
+* 此外，我们也可以直接进入 Hexo\source_posts 目录中，右键新建一个文本文档，将名字改为博文名.md,这样也新建了一篇博文。
+
+#### 3.3.2 新建页面
+
+```bash
+hexo new page "页面名称"
+
+```
+* 命令执行完后，就会发现在在 Hexo\source 目录中多了一个文件夹，里面还有一个index.md,这就代表我们新建了一个页面。
+
+### 3.4 写博文
+
+用文本编辑器打开上面新建的博文，如下所示：
+```bash
+---
+title: GitHub Pages + Hexo搭建博客
+date: 2016-08-07 17:04:35
+tags:
+categories: Hexo
+---
+```
+* 新建的页面略有不同，没有tags和categories标签。
+
+* 三个”-“后面就是博文的正文内容，接下来就是正儿八经地撰写博文了。
+
+### 3.5 发博文
+
+博文写好了，依然在 Git Shell 中进入 Hexo 文件夹，执行下面几条命令，将博客部署到 GitHub 上：
+
+```bash
+hexo clean
+hexo generate
+(若要本地预览就先执行 hexo server)
+hexo deploy
+```
+
+```bash
+快捷命令：
+hexo g == hexo generate
+hexo d == hexo deploy
+hexo s == hexo server
+hexo n == hexo new
+```
+还能组合使用，如：
+
+```bash
+hexo d -g
+```
+刷新你的个人博客，就可以看到新鲜出炉的博文了。
+
+## 四、安装主题
+
+### 4.1 选择主题
+
+我们刚才使用Hexo生成的博客使用的是Hexo的默认主题：Landscape。怎么说呢，这个主题猛地一看还行，仔细一看还不如猛地一看。
+
+不过hexo 给我们提供了大量的主题，[Themes·Hexo](https://github.com/hexojs/hexo/wiki/Themes) 我选择的是这个主题：NexT。
+
+### 4.2 安装NexT主题
+
+Hexo 有两份主要的配置文件`_config.yml`，一份位于站点根目录下，另一份位于主题目录下。为了描述方便，在以下说明中，将前者称为 `站点配置文件`，后者称为 `主题配置文件`。
+
+#### 4.2.1 下载 NexT 主题
+
+使用 Git Shell 进入 Hexo 文件夹，输入以下两条命令：
+```bash
+cd Hexo
+git clone https://github.com/iissnan/hexo-theme-next themes/next
+```
+#### 4.2.2 启用NexT主题
+
+下载完成后，打开 `站点配置文件`，找到 theme 字段，并将其值更改为 next。
+
+#### 4.2.3 验证主题是否启用
+
+执行上面发博文的命令，刷新你的个人博客，就能看到你设置的主题是否启用。
+
+### 4.3 设置NexT主题和第三方服务
+安装完NexT之后，还是发现不够漂亮对不对，所以下面我们来慢慢地润色你的个人博客。
+
+#### 4.3.1 选择样式
+
+NexT默认的样式其实也比较丑，幸好作者提供了一款十分漂亮的样式:Mist。启用 Mist 很简单，仅需在 `主题配置文件`中将 #scheme: Mist 前面的 # 注释去掉即可。
+
+#### 4.3.2 菜单设置
+
+菜单配置在 主题配置文件 的 menu，下面是菜单配置示例：
+
+```bash
+menu:
+  #home: /
+  archives: /archives
+  about: /about
+  categories: /categories
+  tags: /tags
+  #commonweal: /404.html
+```
+其它的很多在[NexT官方文档](http://theme-next.iissnan.com/)里面已经讲的很清楚了,可以自己去研究研究。
+## 五、 优化部署与管理
+
+### 5.1 概述
 Hexo部署到GitHub上的文件，是.md（你的博文）转化之后的.html（静态网页）。因此，当你重装电脑或者想在不同电脑上修改博客时，就不可能了（除非你自己写html o(^▽^)o ）。
 
 其实，Hexo生成的网站文件中有.gitignore文件，因此它的本意也是想我们将Hexo生成的网站文件存放到GitHub上进行管理的（而不是用U盘或者云备份啦(╬▔皿▔)凸）。这样，不仅解决了上述的问题，还可以通过git的版本控制追踪你的博文的修改过程，是极赞的。
@@ -203,7 +318,8 @@ Hexo部署到GitHub上的文件，是.md（你的博文）转化之后的.html�
 
 下面以我的博客作为例子详细地讲述。
 
-### 4.2 我的博客搭建流程
+
+### 5.2 我的博客搭建流程
 
 1. 创建仓库，blog
 2. 创建两个分支：master 与 gh-pages;
@@ -212,8 +328,8 @@ Hexo部署到GitHub上的文件，是.md（你的博文）转化之后的.html�
 
 这样一来，在GitHub上的lin-sun.github.io仓库就有两个分支，一个master分支用来存放网站的原始文件，一个gh-pages分支用来存放生成的静态网页。完美( •̀ ω •́ )y！
 
-### 4.3 我的博客管理流程
-#### 4.3.1 日常修改
+### 5.3 我的博客管理流程
+#### 5.3.1 日常修改
 在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理：
 
 1. 依次执行git add .、git commit -m "..."、git push origin master指令将改动推送到GitHub（此时当前分支应为master）；
@@ -221,7 +337,7 @@ Hexo部署到GitHub上的文件，是.md（你的博文）转化之后的.html�
 
 虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催....的情况，调转顺序就有问题了）。
 
-#### 4.3.2 本地资料丢失
+#### 5.3.2 本地资料丢失
 当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：
 
 1. 使用git clone git@github.com:lin-sun/blog.git拷贝仓库（默认分支为master）；
