@@ -147,14 +147,24 @@ $ git checkout gh-pages
 ```
 可以用git branch 来查看当前分支
 
-### 4.2、合并分支
+### 4.2、 推送本地项目的子文件到gh-pages
+
+```bash
+$ git branch gh-pages
+$ git checkout gh-pages
+$ git add "dist"
+$ git commit -m "first commit"
+$ git subtree push --prefix=dist origin gh-pages
+# dist为本地项目的子文件名
+```
+### 4.3、合并分支
 合并分支命令很简单，但请注意：合并分支一定要切换至主分支，并且要合并的分支必须commit了：
 
 ```bash
 git merge gh-pages
 ```
 合并分支只是合并内容，并不会删除分支
-### 4.3、删除分支
+### 4.4、删除分支
 ```bash
 git branch -d gh-pages
 ```
