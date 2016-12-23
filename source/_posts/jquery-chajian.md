@@ -16,7 +16,7 @@ categories: jQuery
 
 jquery.lazyload.js 是一个用 JavaScript 编写的jQuery 插件. 它可以延迟加载长页面中的图片. 在浏览器可视区域外的图片不会被载入, 直到用户将页面滚动到它们所在的位置.这与图片预加载的处理方式正好是相反的.在包含很多大图片长页面中延迟加载图片可以加快页面加载速度.浏览器将会在 加载可见图片之后即进入就绪状态. 在某些情况下还可以帮助降低服务器负担.
 
-[文档](http://www.ijquery.cn/?p=253)
+[文档](http://www.cnblogs.com/wenbo/archive/2011/07/15/2107579.html)
 
 * jquery.ias.js
 
