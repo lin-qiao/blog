@@ -32,7 +32,7 @@ menu:
   categories: /categories
   #about: /about
   archives: /archives
-  #tags: /tags
+  # tags: /tags
   #commonweal: /404.html
 
 
@@ -169,10 +169,10 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggler.
-  #display: post
+  display: post
   #display: always
   #display: hide
-  display: remove
+  # display: remove
 
 
 # Blogrolls
