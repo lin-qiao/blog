@@ -301,7 +301,19 @@ export default {
 
   ```bash
   beforecreate : 举个栗子：可以在这加个loading事件
-  created ：在这结束loading，还做一些初始化，实现函数自执行 
+  created ：在这结束loading，还做一些初始化，实现函数自执行
   mounted ： 在这发起后端请求，拿回数据，配合路由钩子做一些事情
   beforeDestory： 你确认删除XX吗？ destoryed ：当前组件已被删除，清空相关内容
   ```
+
+##  vue 常用的一些属性和方法
+* data:用来存放数据
+* methods:存放对数据和页面的操作
+* computed:计算属性 对数据进行任何复杂逻辑
+* mounted:在这发起后端请求，拿回数据，配合路由钩子做一些事情
+* filters:过滤器
+vuex
+* state:多个组件共享的数据，属性
+* mutations 非常类似于事件,更改 Vuex 的 store 中的state的唯一方法
+* getters  可以认为是 store 的计算属性,接受 state 作为其第一个参数
+* actions 类似于mutations 不同在于actions 是提交mutations，不是变更state ，actions 可以包含异步操作
