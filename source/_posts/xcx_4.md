@@ -26,15 +26,15 @@ this.setData({
 })
 ```
 
-#### 数据绑定 {{}}
+#### 数据绑定
 
 WXML 中的动态数据均来自对应 Page 的 data。
 
 * 微信小程序的数据绑定是单项绑定模式，即WXML的数据发生变化，Page中data的数据并不会发生变化
 
-* 如果数据需要写在属性内，不可以省略{{}}
+* 如果数据需要写在属性内，不可以省略双括号
 
-微信小程序可以在 {{}} 内进行简单的运算，支持的有如下几种方式：
+微信小程序可以在双括号内进行简单的运算，支持的有如下几种方式：
 * 三元运算
 * 算数运算
 * 逻辑判断
@@ -59,7 +59,7 @@ WXML 中的动态数据均来自对应 Page 的 data。
 官方文档：https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/list.html
 
 ### 条件渲染 wx:if
-在框架中，使用 wx:if="{{condition}}" 来判断是否需要渲染该代码块：
+在框架中，使用 wx:if="`{{condition}}`" 来判断是否需要渲染该代码块：
 ```html
 <block wx:if="{{true}}">
   <view> view1 </view>
