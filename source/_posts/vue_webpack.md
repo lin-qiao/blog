@@ -2,7 +2,7 @@
 title: vue-cli中的webpack配置
 date: 2016-11-25
 tags:
-categories: webpack,vue
+categories: webpack
 ---
 
 ## 版本号
