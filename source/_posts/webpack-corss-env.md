@@ -43,7 +43,7 @@ plugins: [
     }),
   ]
 ```
-> 现在js文件也可用通过`process.env.NODE_ENV`取到所设置的环境变量了。
+> 现在js文件也可通过`process.env.NODE_ENV`取到所设置的环境变量啦。
 
 #### 4.使用不用的baseUrl
 
