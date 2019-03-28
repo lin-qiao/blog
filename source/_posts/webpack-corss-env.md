@@ -30,10 +30,10 @@ webpack环境变量 和 DefinePlugin插件
   "build": "node build/build.js"
 },
 ```
-> Webpack是属于Node的程序，Node环境下的环境变量，Webpack可以配置可以灵活读取
+> Webpack是属于Node的程序，Node环境下的环境变量，Webpack可以配置可以灵活读取。
 
 #### 3.修改webpackage.prod.conf.js 文件
-src的js文件属于Webpack要构建的产物，如果里面也想读取环境变量。可以通过DefinePlugin来完成
+src的js文件属于Webpack要构建的产物，如果里面也想读取环境变量。可以通过DefinePlugin来完成。
 
 ```javascript
 plugins: [
@@ -43,7 +43,7 @@ plugins: [
     }),
   ]
 ```
-> 现在js文件也可用通过`process.env.NODE_ENV`取到所设置的环境变量了
+> 现在js文件也可用通过`process.env.NODE_ENV`取到所设置的环境变量了。
 
 #### 4.使用不用的baseUrl
 
