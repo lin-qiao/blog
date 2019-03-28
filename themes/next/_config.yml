@@ -392,3 +392,13 @@ images: images
 
 # Theme version
 version: 5.0.1
+
+# Fireworks
+fireworks: true
+
+# --------------------------------------------------------------
+# background settings
+# --------------------------------------------------------------
+# add canvas-nest effect
+# see detail from https://github.com/hustcc/canvas-nest.js
+canvas_nest: true
