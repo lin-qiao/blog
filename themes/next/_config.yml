@@ -394,11 +394,11 @@ images: images
 version: 5.0.1
 
 # Fireworks
-fireworks: true
+fireworks: false
 
 # --------------------------------------------------------------
 # background settings
 # --------------------------------------------------------------
 # add canvas-nest effect
 # see detail from https://github.com/hustcc/canvas-nest.js
-canvas_nest: true
+canvas_nest: false
