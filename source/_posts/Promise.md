@@ -2,7 +2,7 @@
 title: 手写一个promise
 date: 2020-01-07
 tags:
-categories: javascript
+categories: javascript进阶
 ---
 
 

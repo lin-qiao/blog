@@ -1,24 +1,24 @@
 ---
-title: �ġ�С����ҳ���߼�
+title: 四、小程序页面逻辑
 date: 2018-02-09
 tags:
-categories: ΢��С����
+categories: 微信小程序
 ---
 
 
 
-д��ǰ�棺΢��С����֧��ES6�﷨���������߻����ϴ�������ʱ���Զ�תΪES5
+写在前面：微信小程序支持ES6语法，开发工具会在上传或编译的时候自动转为ES5
 
-### ����ԭ��
-С�������ͼ��Ŀǰʹ�� WebView ��Ϊ��Ⱦ���壬���߼������ɶ����� JavascriptCore ��Ϊ���л������ڼܹ��ϣ�WebView �� JavascriptCore ���Ƕ�����ģ�飬�����߱�����ֱ�ӹ�����ͨ������ǰ����ͼ����߼�������ݴ��䣬ʵ����ͨ�������ṩ�� evaluateJavascript ��ʵ�֡����û���������ݣ���Ҫ����ת��Ϊ�ַ�����ʽ���ݣ�ͬʱ��ת�������������ƴ�ӳ�һ�� JS �ű�����ͨ��ִ�� JS �ű�����ʽ���ݵ����߶���������
+### 工作原理
+小程序的视图层目前使用 WebView 作为渲染载体，而逻辑层是由独立的 JavascriptCore 作为运行环境。在架构上，WebView 和 JavascriptCore 都是独立的模块，并不具备数据直接共享的通道。当前，视图层和逻辑层的数据传输，实际上通过两边提供的 evaluateJavascript 所实现。即用户传输的数据，需要将其转换为字符串形式传递，同时把转换后的数据内容拼接成一份 JS 脚本，再通过执行 JS 脚本的形式传递到两边独立环境。
 
-�� evaluateJavascript ��ִ�л��ܺܶ෽���Ӱ�죬���ݵ�����ͼ�㲢����ʵʱ�ġ�
+而 evaluateJavascript 的执行会受很多方面的影响，数据到达视图层并不是实时的。
 
 
 <!-- more -->
-### �޸�page���data��ֵ
+### 修改page里边data的值
 
-��vue������ͬ���޸�data������ݱ���ͨ��this.setData���������ʵ�֡�����һ������Ϊ������keyΪdata��߶�Ӧ�ı�������valueΪ������������
+跟vue有所不同，修改data里的数据必须通过this.setData这个函数来实现。接受一个对象为参数，key为data里边对应的变量名，value为赋给它的数据
 
 ```javascript
 this.setData({
@@ -26,29 +26,29 @@ this.setData({
 })
 ```
 
-#### ���ݰ�
+#### 数据绑定
 
-WXML �еĶ�̬���ݾ����Զ�Ӧ Page �� data��
+WXML 中的动态数据均来自对应 Page 的 data。
 
-* ΢��С��������ݰ��ǵ����ģʽ����WXML�����ݷ����仯��Page��data�����ݲ����ᷢ���仯
+* 微信小程序的数据绑定是单项绑定模式，即WXML的数据发生变化，Page中data的数据并不会发生变化
 
-* ���������Ҫд�������ڣ�������ʡ��˫����
+* 如果数据需要写在属性内，不可以省略双括号
 
-΢��С���������˫�����ڽ��м򵥵����㣬֧�ֵ������¼��ַ�ʽ��
-* ��Ԫ����
-* ��������
-* �߼��ж�
-* �ַ�������
-* ����·������
+微信小程序可以在双括号内进行简单的运算，支持的有如下几种方式：
+* 三元运算
+* 算数运算
+* 逻辑判断
+* 字符串运算
+* 数据路径运算
 
-�ٷ��ĵ���https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html
+官方文档：https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html
 
-### �б���Ⱦ wx:for
+### 列表渲染 wx:for
 
-�������ʹ�� wx:for �������԰�һ�����飬����ʹ�������и���������ظ���Ⱦ�������
+在组件上使用 wx:for 控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。
 
-* Ĭ������ĵ�ǰ����±������Ĭ��Ϊ index�����鵱ǰ��ı�����Ĭ��Ϊ item
-* ����ʹ�� `wx:for-index="idx"` ��`wx:for-item="itemName"`���ı�Ĭ��ֵ
+* 默认数组的当前项的下标变量名默认为 index，数组当前项的变量名默认为 item
+* 可以使用 `wx:for-index="idx"` ，`wx:for-item="itemName"`来改变默认值
 
 ```html
 <view wx:for="{{array}}">
@@ -56,78 +56,78 @@ WXML �еĶ�̬���ݾ����Զ�Ӧ Page �� data��
 </view>
 ```
 
-�ٷ��ĵ���https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/list.html
+官方文档：https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/list.html
 
-### ������Ⱦ wx:if
-�ڿ���У�ʹ�� wx:if="`{{condition}}`" ���ж��Ƿ���Ҫ��Ⱦ�ô���飺
+### 条件渲染 wx:if
+在框架中，使用 wx:if="`{{condition}}`" 来判断是否需要渲染该代码块：
 ```html
 <block wx:if="{{true}}">
   <view> view1 </view>
   <view> view2 </view>
 </block>
 ```
-* <block/> ������һ���������������һ����װԪ�أ�������ҳ�������κ���Ⱦ��ֻ���ܿ������ԡ�
+* <block/> 并不是一个组件，它仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性。
 
-�ٷ��ĵ���https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/conditional.html
+官方文档：https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/conditional.html
 
-### �¼�(bind��catch)
+### 事件(bind和catch)
 
-* bind�¼��󶨲�����ֹð���¼�����ð��
-* catch�¼��󶨿�����ֹð���¼�����ð��
+* bind事件绑定不会阻止冒泡事件向上冒泡
+* catch事件绑定可以阻止冒泡事件向上冒泡
 
-������а�һ���¼�������������bindtap�����û�����������ʱ����ڸ�ҳ���Ӧ��Page���ҵ���Ӧ���¼�����������
+在组件中绑定一个事件处理函数。如bindtap，当用户点击该组件的时候会在该页面对应的Page中找到相应的事件处理函数。
 
 ``` html
 <view id="tapTest" data-hi="WeChat" bindtap="tapName"> Click me! </view>
 ```
 
-* ע�⣺�¼���������`bindtap="tapName()"`����
-* ���η�ʽ�� ��data-��ͷ��������������ַ�-���ӣ������д�д(��д���Զ�ת��Сд)��data-element-type�������� event.currentTarget.dataset �лὫ���ַ�ת���շ�elementType��
-* data- ���ݵĲ������Ϳ�������������
+* 注意：事件不可以以`bindtap="tapName()"`传参
+* 传参方式： 以data-开头，多个单词由连字符-链接，不能有大写(大写会自动转成小写)如data-element-type，最终在 event.currentTarget.dataset 中会将连字符转成驼峰elementType。
+* data- 传递的参数类型可以是任意类型
 
-�ٷ��ĵ���https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html
+官方文档：https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html
 
-### ����ӿ� wx.request
+### 请求接口 wx.request
 
 ```javascript
 wx.request({
   url: 'https://URL',
   data: {},
-  method: 'GET', // ����ʽ
-  header: {}, // ��������� header
+  method: 'GET', // 请求方式
+  header: {}, // 设置请求的 header
   success: function(res){
     console.log(res.data)
-    // ����ɹ��ص�
+    // 请求成功回调
   },
   fail: function() {
-    // ����ʧ�ܻص�
+    // 请求失败回调
   },
   complete: function() {
-    // ��������ص�
+    // 请求结束回调
   }
 })
 ```
 
-success���ز���˵����
+success返回参数说明：
 
-|���� |	����	| ˵��	|
+|参数 |	类型	| 说明	|
 | --------    | :----: |:----: |
-|data	|Object/String/ArrayBuffer |	�����߷��������ص�����	|
-|statusCode|	Number	|�����߷��������ص� HTTP ״̬��	|
-|header|	Object	|�����߷��������ص� HTTP Response Header|
+|data	|Object/String/ArrayBuffer |	开发者服务器返回的数据	|
+|statusCode|	Number	|开发者服务器返回的 HTTP 状态码	|
+|header|	Object	|开发者服务器返回的 HTTP Response Header|
 
-* ���Ҫȡ���������ص����ݣ���`res.data`
-* ������statusCode ����һЩ������״̬����ʾ
+* 如果要取服务器返回的数据，请`res.data`
+* 可以用statusCode 来做一些服务器状态的提示
 
-�ٷ��ĵ��� https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html#wxrequestobject
+官方文档： https://mp.weixin.qq.com/debug/wxadoc/dev/api/network-request.html#wxrequestobject
 
 
-### ��������
+### 交互反馈
 
-��ʾ���� wx.showToast()
-�ر���ʾ���� wx.hideToast()
-�����е��� wx.showLoading()
-�رռ����е��� wx.hideLoading()
-ģ̬���� wx.showModal()
+提示弹窗 wx.showToast()
+关闭提示弹窗 wx.hideToast()
+加载中弹窗 wx.showLoading()
+关闭加载中弹窗 wx.hideLoading()
+模态弹窗 wx.showModal()
 
-�ٷ��ĵ���https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-react.html
+官方文档：https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-react.html
