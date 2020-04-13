@@ -2,13 +2,15 @@
 
 title: 手写call,apply,bind
 
-date: 2020-02-27
+date: 2020-04-13
 
 tags:
 
 categories: javascript进阶
 
 ---
+
+<!-- more -->
 
 #### 手写call
 
