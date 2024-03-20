@@ -1,38 +1,699 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="初识 vue(1) vue 到底是什么? 一个 mvvm 框架(库)、和 angular 类似 比较容易上手、小巧 官网:http:&#x2F;&#x2F;cn.vuejs.org&#x2F; 手册： http:&#x2F;&#x2F;cn.vuejs.org&#x2F;api&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue 要点总结">
+<meta property="og:url" content="http://yoursite.com/2017/03/03/vue/index.html">
+<meta property="og:site_name" content="Lin&#39;s Note">
+<meta property="og:description" content="初识 vue(1) vue 到底是什么? 一个 mvvm 框架(库)、和 angular 类似 比较容易上手、小巧 官网:http:&#x2F;&#x2F;cn.vuejs.org&#x2F; 手册： http:&#x2F;&#x2F;cn.vuejs.org&#x2F;api&#x2F;">
+<meta property="og:locale">
+<meta property="og:image" content="https://segmentfault.com/img/bVEs9x?w=847&amp;h=572">
+<meta property="article:published_time" content="2017-03-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-15T03:51:10.968Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://segmentfault.com/img/bVEs9x?w=847&amp;h=572">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/03/vue/"/>
+
+  <title> Vue 要点总结 | Lin's Note </title>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/lin-sun" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lin's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Vue 要点总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-03T00:00:00+08:00" content="2017-03-03">
+              2017-03-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="初识-vue"><a href="#初识-vue" class="headerlink" title="初识 vue"></a>初识 vue</h2><h3 id="1-vue-到底是什么"><a href="#1-vue-到底是什么" class="headerlink" title="(1) vue 到底是什么?"></a>(1) vue 到底是什么?</h3><ul>
+<li>一个 mvvm 框架(库)、和 angular 类似</li>
+<li>比较容易上手、小巧</li>
+<li>官网:<a href="http://cn.vuejs.org/">http://cn.vuejs.org/</a></li>
+<li>手册： <a href="http://cn.vuejs.org/api/">http://cn.vuejs.org/api/</a></li>
+</ul>
+<span id="more"></span>
+<h3 id="2-vue-和-angular-区别"><a href="#2-vue-和-angular-区别" class="headerlink" title="(2) vue 和 angular 区别?"></a>(2) vue 和 angular 区别?</h3><ul>
+<li>vue——简单、易学<br>指令以 v-xxx<br>一片 html 代码配合上 json，在 new 出来 vue 实例<br>个人维护项目</li>
+</ul>
+<p>适合: 移动端项目,小巧<br>vue 的发展势头很猛，github 上 start 数量已经超越 angular</p>
+<ul>
+<li>angular——上手难<br>指令以 ng-xxx<br>所有属性和方法都挂到$scope 身上<br>angular 由 google 维护</li>
+</ul>
+<p>合适: pc 端项目</p>
+<ul>
+<li>共同点: 不兼容低版本 IE</li>
+</ul>
+<h3 id="vue-基本雏形"><a href="#vue-基本雏形" class="headerlink" title="vue 基本雏形"></a>vue 基本雏形</h3><ul>
+<li>angular 展示一条基本数据:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var app=angular.module(<span class="string">&#x27;app&#x27;</span>,[]);</span><br><span class="line"></span><br><span class="line">app.controller(<span class="string">&#x27;xxx&#x27;</span>,<span class="keyword">function</span>(<span class="variable">$scope</span>)&#123; //C</span><br><span class="line"><span class="variable">$scope</span>.msg=<span class="string">&#x27;welcome&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#html:</span></span><br><span class="line">&lt;div ng-controller=<span class="string">&quot;xxx&quot;</span>&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>vue 展示一条基本数据:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># html:</span></span><br><span class="line">&lt;div <span class="built_in">id</span>=<span class="string">&quot;box&quot;</span>&gt;&#123;&#123;msg&#125;&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">var c=new Vue(&#123;</span><br><span class="line">  el:<span class="string">&#x27;#box&#x27;</span>,  //选择器  class tagName</span><br><span class="line">  data:&#123;</span><br><span class="line">    msg:<span class="string">&#x27;welcome vue&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="不失优雅"><a href="#不失优雅" class="headerlink" title="不失优雅"></a>不失优雅</h2><ul>
+<li>Vue 虽然是一个比较轻量级的框架，简单轻量的同时还非常的人性化，数据写到 data 里边，对数据的操作写到 method 里边，写的代码更加规范易读，其提供的 API 也是非常的容易理解，同时也提供了一些很便捷的指令和属性。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">（1）绑定click事件</span><br><span class="line">&lt;a v-on:click=<span class="string">&quot;doSomething&quot;</span>&gt;&lt;/a&gt; =&gt; &lt;a @click=<span class="string">&quot;doSomething&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line">(2) 绑定动态属性</span><br><span class="line">&lt;a v-bind:href=<span class="string">&quot;url&quot;</span>&gt;&lt;/a&gt; =&gt; &lt;a :href=<span class="string">&quot;url&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line">(3) 便捷的修饰符</span><br><span class="line">&lt;!-- 阻止单击事件冒泡 --&gt;</span><br><span class="line">&lt;a @click.stop=<span class="string">&quot;doSomething&quot;</span>&gt;&lt;/a&gt;</span><br><span class="line">&lt;!-- 只在按下回车键的时候触发事件 --&gt;</span><br><span class="line">&lt;input @keyup.enter=<span class="string">&quot;submit&quot;</span>&gt;</span><br><span class="line">(4) 实用的参数特性</span><br><span class="line">&lt;!-- debounce 设置一个最小的延时 --&gt;</span><br><span class="line">&lt;input v-model=<span class="string">&quot;note&quot;</span> debounce=<span class="string">&quot;500&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="小巧"><a href="#小巧" class="headerlink" title="小巧"></a>小巧</h2><p>说起小巧，那应该首先要关注下 Vue 的源码大小，Vue 的成产版本（即 min 版）源码仅为 72.9kb，官网称 gzip 压缩后只有 25.11kb，相比 Angular 的 144kb 缩小了一半。<br>小巧的一种好处就是可以让用户更自由的选择相应的解决方案，在配合其他库方面它给了用户更大的空间。<br>如 Vue 的核心默认是不包含路由和 Ajax 功能，但是如果项目中需要路由和 AJAX，可以直接使用 Vue 提供的官方库 Vue-router 及第三方插件 vue-resource，同时你也可以使用其他你想要使用的库或插件，如 jQuery 的 AJAX 等。</p>
+<h2 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h2><p>Vue 的组件化功能可谓是它的一大亮点，通过将页面上某一组件的 html、CSS、js 代码放入一个.vue 的文件中进行管理可以大大提高代码的维护性。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div class=<span class="string">&quot;box&quot;</span> v-text=<span class="string">&quot;note&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  <span class="function"><span class="title">data</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      note: <span class="string">&#x27;这是一个组件的html模板！&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  method:&#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">.box &#123;</span><br><span class="line">  color: <span class="comment">#000;</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="vue-router"><a href="#vue-router" class="headerlink" title="vue-router"></a>vue-router</h2><ul>
+<li><ol>
+<li>布局</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link to=<span class="string">&quot;/home&quot;</span>&gt;主页&lt;/router-link&gt; //router-link 会被加载成一个a标签</span><br><span class="line">&lt;router-view&gt;&lt;/router-view&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol>
+<li>路由具体写法</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//组件</span><br><span class="line">var Home=&#123;</span><br><span class="line">  template:<span class="string">&#x27;&lt;h3&gt;我是主页&lt;/h3&gt;&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line">var News=&#123;</span><br><span class="line">  template:<span class="string">&#x27;&lt;h3&gt;我是新闻&lt;/h3&gt;&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//配置路由</span><br><span class="line">const routes=[</span><br><span class="line">&#123;path:<span class="string">&#x27;/home&#x27;</span>, componet:Home&#125;,</span><br><span class="line">&#123;path:<span class="string">&#x27;/news&#x27;</span>, componet:News&#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line">//生成路由实例</span><br><span class="line">const router=new VueRouter(&#123;</span><br><span class="line">  routes</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//最后挂到vue上</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  el:<span class="string">&#x27;#box&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol>
+<li>重定向</li>
+</ol>
+</li>
+</ul>
+<p>之前 router.rediect 废弃了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;path:<span class="string">&#x27;*&#x27;</span>, redirect:<span class="string">&#x27;/home&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol>
+<li>路由嵌套:</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">/user/username</span><br><span class="line"></span><br><span class="line">const routes=[</span><br><span class="line">&#123;path:<span class="string">&#x27;/home&#x27;</span>, component:Home&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  path:<span class="string">&#x27;/user&#x27;</span>,</span><br><span class="line">  component:User,</span><br><span class="line">  children:[  //核心</span><br><span class="line">  &#123;path:<span class="string">&#x27;username&#x27;</span>, component:UserDetail&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;path:<span class="string">&#x27;*&#x27;</span>, redirect:<span class="string">&#x27;/home&#x27;</span>&#125;  //404</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol>
+<li>动态传值</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/user?<span class="built_in">id</span>=4</span><br><span class="line">:to=<span class="string">&quot;&#123;path:&#x27;/user&#x27;,query: &#123;id:item.id&#125;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol>
+<li>路由实例方法:</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">router.push(&#123;path:<span class="string">&#x27;home&#x27;</span>&#125;);  //直接添加一个路由,表现切换路由，本质往历史记录里面添加一个</span><br><span class="line">router.replace(&#123;path:<span class="string">&#x27;news&#x27;</span>&#125;) //替换路由，不会往历史记录里面添加</span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol>
+<li>路由切换可以与 animate.css 配合，产生页面切换动画的效果，类似 swiper</li>
+</ol>
+</li>
+</ul>
+<h2 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h2><h3 id="store"><a href="#store" class="headerlink" title="store"></a>store</h3><p>vuex 的核心是”store”,简单的 store 如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 如果在模块化构建系统中，请确保在开头调用了 Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: 0</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以通过 store.state 来获取状态对象，以及通过 store.commit 方法触发状态变更：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">store.state.count</span><br><span class="line">store.commit(<span class="string">&#x27;increment&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Vuex 通过 store 选项，提供了一种机制将状态从根组件『注入』到每一个子组件中（需调用 Vue.use(Vuex)）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const app = new Vue(&#123;</span><br><span class="line">  el: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">  // 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件</span><br><span class="line">  store,</span><br><span class="line">  components: &#123; Counter &#125;,</span><br><span class="line">  template: `</span><br><span class="line">  &lt;div class=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">  &lt;counter&gt;&lt;/counter&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  `</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当一个组件需要获取多个状态时候，将这些状态都声明为计算属性会有些重复和冗余。为了解决这个问题，我们可以使用 mapState</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapState &#125; from <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  // ...</span><br><span class="line">  computed: mapState(&#123;</span><br><span class="line">    // 箭头函数可使代码更简练</span><br><span class="line">    count: state =&gt; state.count,</span><br><span class="line"></span><br><span class="line">    // 传字符串参数 <span class="string">&#x27;count&#x27;</span> 等同于 `state =&gt; state.count`</span><br><span class="line">    countAlias: <span class="string">&#x27;count&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    // 为了能够使用 `this` 获取局部状态，必须使用常规函数</span><br><span class="line">    countPlusLocalState (state) &#123;</span><br><span class="line">      <span class="built_in">return</span> state.count + this.localCount</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当映射的计算属性的名称与 state 的子节点名称相同时，我们也可以给 mapState 传一个字符串数组。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">computed: mapState([</span><br><span class="line">// 映射 this.count 为 store.state.count</span><br><span class="line"><span class="string">&#x27;count&#x27;</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<h3 id="Mutations"><a href="#Mutations" class="headerlink" title="Mutations"></a>Mutations</h3><ul>
+<li>更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 mutations 非常类似于事件,它会接受 state 作为第一个参数。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    count: 1</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    increment (state) &#123;</span><br><span class="line">      // 变更状态</span><br><span class="line">      state.count++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>调用</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">store.commit(<span class="string">&#x27;increment&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>你可以向 store.commit 传入额外的参数，即 mutation 的 载荷（payload）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// ...</span><br><span class="line">mutations: &#123;</span><br><span class="line">  increment (state, n) &#123;</span><br><span class="line">    state.count += n</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">store.commit(<span class="string">&#x27;increment&#x27;</span>, 10)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在组件中提交 Mutations,你可以在组件中使用 this.$store.commit(‘xxx’) 提交 mutation，或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mapMutations &#125; from <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  // ...</span><br><span class="line">  methods: &#123;</span><br><span class="line">    ...mapMutations([</span><br><span class="line">    <span class="string">&#x27;increment&#x27;</span> // 映射 this.increment() 为 this.<span class="variable">$store</span>.commit(<span class="string">&#x27;increment&#x27;</span>)</span><br><span class="line">    ]),</span><br><span class="line">    ...mapMutations(&#123;</span><br><span class="line">      add: <span class="string">&#x27;increment&#x27;</span> // 映射 this.add() 为 this.<span class="variable">$store</span>.commit(<span class="string">&#x27;increment&#x27;</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="生命周期和钩子函数"><a href="#生命周期和钩子函数" class="headerlink" title="生命周期和钩子函数"></a>生命周期和钩子函数</h2><p><img src="https://segmentfault.com/img/bVEs9x?w=847&amp;h=572" alt="Image text"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">beforecreate : 举个栗子：可以在这加个loading事件</span><br><span class="line">created ：在这结束loading，还做一些初始化，实现函数自执行</span><br><span class="line">mounted ： 在这发起后端请求，拿回数据，配合路由钩子做一些事情</span><br><span class="line">beforeDestory： 你确认删除XX吗？ destoryed ：当前组件已被删除，清空相关内容</span><br></pre></td></tr></table></figure>
+<h2 id="vue-常用的一些属性和方法"><a href="#vue-常用的一些属性和方法" class="headerlink" title="vue 常用的一些属性和方法"></a>vue 常用的一些属性和方法</h2><ul>
+<li>data:用来存放数据</li>
+<li>methods:存放对数据和页面的操作</li>
+<li>computed:计算属性 对数据进行任何复杂逻辑</li>
+<li>mounted:在这发起后端请求，拿回数据，配合路由钩子做一些事情</li>
+<li>filters:过滤器<br>vuex</li>
+<li>state:多个组件共享的数据，属性</li>
+<li>mutations 非常类似于事件,更改 Vuex 的 store 中的 state 的唯一方法</li>
+<li>getters 可以认为是 store 的计算属性,接受 state 作为其第一个参数</li>
+<li>actions 类似于 mutations 不同在于 actions 是提交 mutations，不是变更 state ，actions 可以包含异步操作</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2017/02/13/ajax/" rel="next" title="原生ajax写法">
+                <i class="fa fa-chevron-left"></i> 原生ajax写法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2017/09/04/git_v2/" rel="prev" title="Git远程操作详解">
+                Git远程操作详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/avatar.gif"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E8%AF%86-vue"><span class="nav-number">1.</span> <span class="nav-text">初识 vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-vue-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">(1) vue 到底是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-vue-%E5%92%8C-angular-%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">(2) vue 和 angular 区别?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-%E5%9F%BA%E6%9C%AC%E9%9B%8F%E5%BD%A2"><span class="nav-number">1.3.</span> <span class="nav-text">vue 基本雏形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%A4%B1%E4%BC%98%E9%9B%85"><span class="nav-number">2.</span> <span class="nav-text">不失优雅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E5%B7%A7"><span class="nav-number">3.</span> <span class="nav-text">小巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">组件化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-router"><span class="nav-number">5.</span> <span class="nav-text">vue-router</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vuex"><span class="nav-number">6.</span> <span class="nav-text">vuex</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#store"><span class="nav-number">6.1.</span> <span class="nav-text">store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mutations"><span class="nav-number">6.2.</span> <span class="nav-text">Mutations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%92%8C%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="nav-number">7.</span> <span class="nav-text">生命周期和钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">vue 常用的一些属性和方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+</body>
+</html>

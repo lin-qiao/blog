@@ -1,38 +1,706 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="DOM是什么 Document Object Modal(文档对象模型) 我们在页面中看到的div,span,p,h1等等元素或文字在javascript眼中都是一个对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM概述">
+<meta property="og:url" content="http://yoursite.com/2016/04/09/dom-outline/index.html">
+<meta property="og:site_name" content="Lin&#39;s Note">
+<meta property="og:description" content="DOM是什么 Document Object Modal(文档对象模型) 我们在页面中看到的div,span,p,h1等等元素或文字在javascript眼中都是一个对象">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-04-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-15T03:29:26.955Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/04/09/dom-outline/"/>
+
+  <title> DOM概述 | Lin's Note </title>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/lin-sun" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lin's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                DOM概述
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-09T00:00:00+08:00" content="2016-04-09">
+              2016-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="DOM是什么"><a href="#DOM是什么" class="headerlink" title="DOM是什么"></a>DOM是什么</h1><!-- mdn +关键字 -->
+<p>Document Object Modal(文档对象模型)</p>
+<p>我们在页面中看到的div,span,p,h1等等元素或文字<br>在javascript眼中都是一个对象</p>
+<span id="more"></span>
+<h1 id="从一个web应用的开发说起"><a href="#从一个web应用的开发说起" class="headerlink" title="从一个web应用的开发说起"></a>从一个web应用的开发说起</h1><p>第一步，从页面中去选取一个元素出来<br>当我们的代码在浏览器中运行时，<br>浏览器已经帮我们创建了很多对象，<br>对象中有很多方法，可供我们使用，<br>这些东西都在一个叫做window的全局变量</p>
+<p>window对象中的属性可以省略window.去调用</p>
+<p>选取元素，我们从window.document开始</p>
+<h2 id="选取元素的方式"><a href="#选取元素的方式" class="headerlink" title="选取元素的方式"></a>选取元素的方式</h2><p>快速从Document中取出一个DOM对象的办法</p>
+<ul>
+<li>document.body</li>
+<li>document.head</li>
+<li>document.title</li>
+<li>document.documentEement  代表整个HTML标签的一个DOM对象</li>
+<li>el=document.querySelector()</li>
+<li><p>document.getElementById()</p>
+</li>
+<li><p>document.querySelectorAll()</p>
+</li>
+<li>document.getElementsByClassName()</li>
+<li>document.getElementsByTagName()</li>
+<li>document.getElementsByName()</li>
+</ul>
+<p>这些方法的返回结果是什么？<br>前两个的返回结果代表了页面中某个元素的对象，我们把它叫做DOM对象<br>后四个的返回结果是一个类数组对象，我们把它叫做DOM集合。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> el=&#123;</span><br><span class="line"><span class="number">0</span>:<span class="variable constant_">DOM</span>对象</span><br><span class="line"><span class="number">1</span>:<span class="variable constant_">DOM</span>对象</span><br><span class="line">......</span><br><span class="line"><span class="attr">length</span>:<span class="number">12</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="DOM对象中的常用属性和方法"><a href="#DOM对象中的常用属性和方法" class="headerlink" title="DOM对象中的常用属性和方法"></a>DOM对象中的常用属性和方法</h2><h3 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h3><ul>
+<li>toString()</li>
+<li>valueOf()        console.log输出来的方法</li>
+</ul>
+<h3 id="EventTarget"><a href="#EventTarget" class="headerlink" title="EventTarget"></a>EventTarget</h3><ul>
+<li>addEventListener()</li>
+<li>removeEventListener()</li>
+<li>dispatchEvent()     绑定事件</li>
+</ul>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>所有的DOM对象都是一个节点，这三个属性用来描述节点。</p>
+<ul>
+<li>nodeName</li>
+<li>nodeType</li>
+<li>nodeValue<br>我们能从每个DOM对象身上取到自己相邻或父或子节点</li>
+<li>childNodes          DOM集合(NodeList)</li>
+<li>lastChild           DOM对象</li>
+<li><p>firstChild          DOM对象</p>
+</li>
+<li><p>parentElement       DOM对象</p>
+</li>
+<li><p>parentNode          DOM对象</p>
+</li>
+<li><p>nextSibling         DOM对象  返回下一个兄弟节点</p>
+</li>
+<li>previousSibling     DOM对象  返回上一个兄弟节点</li>
+</ul>
+<p>节点的文本内容(会过滤到标签)</p>
+<ul>
+<li>textContent   </li>
+</ul>
+<p>每个DOM对象中都提供了一些操作节点的方法</p>
+<ul>
+<li>appendChild()    父DOM对象.appendChild(DOM对象)     box.appendChild(el).styel.color=’red’;</li>
+<li><p>insertBefore()   父DOM对象.insertBefore(插入的对象，插入谁之前)    返回值 你插入的那个对象</p>
+</li>
+<li><p>removeChild()                                                      返回值 移除的那个DOM对象</p>
+</li>
+<li><p>replaceChild()   替换某个子节点                                    返回值 替换的那个DOM对象</p>
+</li>
+<li><p>hasChildNodes()                                                    返回值 true false</p>
+</li>
+<li><p>contains()     判断一个节点中包不包含另外一个节点                  返回值 true false</p>
+</li>
+<li><p>cloneNode()   (true:复制所有东西 false:只复制DIV结构)             返回克隆之后的那个DOM对象</p>
+</li>
+</ul>
+<h3 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h3><p>元素和节点的区别：带标签都既要元素，又是节点，不带标签的，比如DIV里边的文字，注释，它们只是节点，不是文字。</p>
+<p>从一个DOM对象开始，获取子父兄弟元素。</p>
+<ul>
+<li>children                取一个DOM对象的子元素</li>
+<li>firstElementChild</li>
+<li><p>lastElementChild</p>
+</li>
+<li><p>nextElementSibling     下一个元素</p>
+</li>
+<li>previousElementSibling 上一个元素</li>
+</ul>
+<p>对元素属性的操作  (HTML 元素的属性，就是头标签里的那些K=’’中的K)</p>
+<ul>
+<li>classList            add remove toggle contains   </li>
+<li>className            可读可写</li>
+<li>id                   可读可写</li>
+<li>getAttribute()</li>
+<li>setAttribute()       没有返回值，只是做了一个操作</li>
+<li>hasAttribute()       判断元素头标签中有没有某个属性  布尔值</li>
+<li>removeAttribute()</li>
+</ul>
+<p>获取该元素的视窗坐标或者坐标</p>
+<ul>
+<li>getBoundingClientRect()  {top:1,left:1,bottom:1,width:1,height:1}</li>
+<li>scrollLeft</li>
+<li><p>scrollTop</p>
+</li>
+<li><p>clientWidht   一般用来结合document.documentElement.clientWidht</p>
+</li>
+<li><p>clientHeight</p>
+</li>
+<li><p>outerHTML</p>
+</li>
+<li>tagName<br>从某个元素开始，可以缩小范围继续去查找元素。</li>
+<li>getElementsByClassName()</li>
+<li>getElementsByTagName()</li>
+<li>querySelector()</li>
+<li>querySelectorAll()</li>
+</ul>
+<h3 id="HTMlElement"><a href="#HTMlElement" class="headerlink" title="HTMlElement"></a>HTMlElement</h3><ul>
+<li>innerHTML 可读写，能设置某个DOM对象内部的Html结构。<br>Warning  ：不要用这种方式追加元素 el.innerHTML+=’<div></div>‘</li>
+<li>innerText  </li>
+</ul>
+<p>实时获取元素信息</p>
+<ul>
+<li>offsetHeight         返回值：数字</li>
+<li>offsetWidth          返回值：数字</li>
+<li>offsetLeft           返回值：数字</li>
+<li>offsetTop            返回值：数字</li>
+<li>offsetParent    获取具有定位属性(非static)的祖先元素。DOM对象</li>
+</ul>
+<p>操作元素的行内样式</p>
+<ul>
+<li>style          可读写，读的时候实时获取元素行内样式的值，不会去计算CSS中定义的属性。52</li>
+</ul>
+<h3 id="HTML-xxx-Element"><a href="#HTML-xxx-Element" class="headerlink" title="HTML xxx Element"></a>HTML xxx Element</h3><ul>
+<li>value</li>
+<li>checked</li>
+<li>focus()</li>
+<li>src</li>
+</ul>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="添加事件的两种方式及其区别"><a href="#添加事件的两种方式及其区别" class="headerlink" title="添加事件的两种方式及其区别"></a>添加事件的两种方式及其区别</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 使用onxxx</span></span><br><span class="line"><span class="keyword">var</span> el=<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;box&#x27;</span>);</span><br><span class="line">el.<span class="property">onclick</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//2</span></span><br><span class="line">el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;,<span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+<p>区别：1 一些H5事件并没有onxxx这个版本<br>      2 onclick 再赋值一次，会覆盖上次赋值的那个函数 addEventListener 没有这个问题，它可以给一个事件添加多个函数，事件触发的<br>      的时候，按照添加顺序，逐个调用处理函数。<br>我们给DOM对象的onclick属性赋值，值为一个函数<br>这次赋值和普通的对象赋值不太一样。<br>js会告诉浏览器，密切关注这个元素，如果有人点击它<br>帮我把这个函数运行一下，<br>运行函数的时候 给我传一个参数，参数为一个对象<br>对象中详细的记录这次点击的一些信息，这个对象被称为事件对象。</p>
+<h2 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h2><p>click dblclick threeclick</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//鼠标按住5秒的时候触发一个事件</span></span><br><span class="line"><span class="keyword">var</span> onlongPress=<span class="keyword">function</span>  (<span class="params">el,fn</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> onlongpress=<span class="keyword">new</span> <span class="title class_">Event</span>(<span class="string">&#x27;onlongpress&#x27;</span>);</span><br><span class="line">	el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;onlongpress&#x27;</span>,<span class="keyword">function</span>  (<span class="params">e</span>) &#123;</span><br><span class="line">		fn.<span class="title function_">call</span>(el,e);</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="keyword">var</span> timerid;</span><br><span class="line">	el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mousedown&#x27;</span>,<span class="keyword">function</span>  (<span class="params">e</span>) &#123;</span><br><span class="line">		e.<span class="title function_">stopProPagation</span>()</span><br><span class="line">		timerid=<span class="built_in">setTimeout</span>(<span class="keyword">function</span>  (<span class="params"></span>) &#123;</span><br><span class="line">			el.<span class="title function_">dispatchEvent</span>(onlongpress);</span><br><span class="line">		&#125;,<span class="number">750</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;mouseup&#x27;</span>,<span class="keyword">function</span>  (<span class="params">e</span>) &#123;</span><br><span class="line">		e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">			<span class="built_in">clearTimeout</span>(timerid);</span><br><span class="line">		&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> onthreeClick=<span class="keyword">function</span>  (<span class="params">el,fn</span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> onthreeClick=<span class="keyword">new</span> <span class="title class_">Event</span>(<span class="string">&#x27;onthreeClick&#x27;</span>);</span><br><span class="line">	el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;onthreeClick&#x27;</span>,<span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">		fn.<span class="title function_">call</span>(el,e);</span><br><span class="line">	&#125;)</span><br><span class="line">	el.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>,(<span class="keyword">function</span>  (<span class="params">e</span>) &#123;</span><br><span class="line">		e.<span class="title function_">stopPropagation</span>();</span><br><span class="line">		<span class="keyword">var</span> i=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">function</span>  (<span class="params"></span>) &#123;</span><br><span class="line">			i+=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span>(i===<span class="number">3</span>)&#123;</span><br><span class="line">				el.<span class="title function_">dispatchEvent</span>(onthreeClick);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">setTimeout</span>(<span class="keyword">function</span>  (<span class="params"></span>) &#123;</span><br><span class="line">				i=<span class="number">0</span>;</span><br><span class="line">			&#125;,<span class="number">750</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="阻止事件冒泡和阻止事件默认形为"><a href="#阻止事件冒泡和阻止事件默认形为" class="headerlink" title="阻止事件冒泡和阻止事件默认形为"></a>阻止事件冒泡和阻止事件默认形为</h2><p>1、 从页面结构中调整，让元素之间不再是包含关系<br>2、 使用事件对象身上的stopPropagation()这个函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.<span class="title function_">stopPropagation</span>()</span><br></pre></td></tr></table></figure></p>
+<h2 id="阻止事件的默认行为"><a href="#阻止事件的默认行为" class="headerlink" title="阻止事件的默认行为"></a>阻止事件的默认行为</h2><p>要从事件的根源去阻止默认行为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e.<span class="title function_">preventDefault</span>()</span><br></pre></td></tr></table></figure></p>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>同一个函数因为参数类型或数量的不同，可以对应多个函数的实现，每种实现对应一个函数体。</p>
+<h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><p>当我们把函数X做为参数传给函数Y，在函数Y内部有对函数X的调用，我们把函数X叫做回调函数。</p>
+<h2 id="递归函数"><a href="#递归函数" class="headerlink" title="递归函数"></a>递归函数</h2><p>在函数内部直接或者间接调用自己</p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>在函数内再嵌套函数</p>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><p>如果就是数组，我们遍历的时候可以使用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">arr.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">v</span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(v)&#125;)</span><br></pre></td></tr></table></figure><br>如果是类数组，我们遍历的时候可以使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr=[],</span><br><span class="line">forEach=arr.<span class="property">forEach</span>,</span><br><span class="line">filter=arr.<span class="property">filter</span>;</span><br><span class="line"><span class="keyword">var</span> els=<span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line"></span><br><span class="line">forEach.<span class="title function_">call</span>(els,<span class="keyword">function</span>(<span class="params">v</span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(v)&#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/08/05/meta/" rel="prev" title="meta标签的使用">
+                meta标签的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/avatar.gif"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">DOM是什么</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E4%B8%80%E4%B8%AAweb%E5%BA%94%E7%94%A8%E7%9A%84%E5%BC%80%E5%8F%91%E8%AF%B4%E8%B5%B7"><span class="nav-number">2.</span> <span class="nav-text">从一个web应用的开发说起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E5%8F%96%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">选取元素的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM%E5%AF%B9%E8%B1%A1%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">DOM对象中的常用属性和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object"><span class="nav-number">2.2.1.</span> <span class="nav-text">Object</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventTarget"><span class="nav-number">2.2.2.</span> <span class="nav-text">EventTarget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node"><span class="nav-number">2.2.3.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Element"><span class="nav-number">2.2.4.</span> <span class="nav-text">Element</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTMlElement"><span class="nav-number">2.2.5.</span> <span class="nav-text">HTMlElement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-xxx-Element"><span class="nav-number">2.2.6.</span> <span class="nav-text">HTML xxx Element</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB"><span class="nav-number">3.1.</span> <span class="nav-text">添加事件的两种方式及其区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text">自定义事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%92%8C%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E9%BB%98%E8%AE%A4%E5%BD%A2%E4%B8%BA"><span class="nav-number">3.3.</span> <span class="nav-text">阻止事件冒泡和阻止事件默认形为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E7%9A%84%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="nav-number">3.4.</span> <span class="nav-text">阻止事件的默认行为</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="nav-number">4.1.</span> <span class="nav-text">函数重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.</span> <span class="nav-text">递归函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">4.4.</span> <span class="nav-text">闭包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">5.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%8D%E5%8E%86"><span class="nav-number">5.1.</span> <span class="nav-text">遍历</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+</body>
+</html>

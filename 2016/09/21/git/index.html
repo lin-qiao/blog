@@ -1,38 +1,608 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Git作为一个版本控制工具，在工作中我们常常会用到它，尤其是在移动开发中，Git可谓是版本管理神器。下面让我们来认识一下Git： Git主要特点有如下：  1、速度：Git在本地上保存着所有当前项目的版本和更新，并且Git中的绝大多数操作都在本地，无需连网，所以处理起来速度。 2、简单的设计：Git的实现与项目复杂度无关，它永远可以在几毫秒的时间内完成分支的创建和切换。 3、完全分布式模式：每个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git的基本使用">
+<meta property="og:url" content="http://yoursite.com/2016/09/21/git/index.html">
+<meta property="og:site_name" content="Lin&#39;s Note">
+<meta property="og:description" content="Git作为一个版本控制工具，在工作中我们常常会用到它，尤其是在移动开发中，Git可谓是版本管理神器。下面让我们来认识一下Git： Git主要特点有如下：  1、速度：Git在本地上保存着所有当前项目的版本和更新，并且Git中的绝大多数操作都在本地，无需连网，所以处理起来速度。 2、简单的设计：Git的实现与项目复杂度无关，它永远可以在几毫秒的时间内完成分支的创建和切换。 3、完全分布式模式：每个">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-09-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-15T03:29:26.955Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/21/git/"/>
+
+  <title> Git的基本使用 | Lin's Note </title>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/lin-sun" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lin's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git的基本使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-21T00:00:00+08:00" content="2016-09-21">
+              2016-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<p>Git作为一个版本控制工具，在工作中我们常常会用到它，尤其是在移动开发中，Git可谓是版本管理神器。下面让我们来认识一下Git：</p>
+<p>Git主要特点有如下：</p>
+<ul>
+<li>1、速度：Git在本地上保存着所有当前项目的版本和更新，并且Git中的绝大多数操作都在本地，无需连网，所以处理起来速度。</li>
+<li>2、简单的设计：Git的实现与项目复杂度无关，它永远可以在几毫秒的时间内完成分支的创建和切换。</li>
+<li>3、完全分布式模式：每个人电脑上都有一个完整的版本库，而且它支持离线工作（大部分操作都是本地执行），本地提交可以稍后提交到服务器上。</li>
+<li>4、对非线性开发模式的强力支持：允许上千个并行开发的分支。</li>
+</ul>
+<span id="more"></span>
+<p><a href="https://git-scm.com/downloads">点击下载git</a></p>
+<h2 id="1、配置git"><a href="#1、配置git" class="headerlink" title="1、配置git"></a>1、配置git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+<p>注意git config命令的–global参数，顾名思义，用了这个参数，表示你这台电脑上所有的Git仓库都会使用这个配置(这个应该很好理解)，当然你也可以对某个仓库指定不同的uer.name和user.email。当然如果大家没有配置该信息的话，  一般情况下在git提交时会使用机器名，这样肯定不方便了。所以笔者建议大家都配置明确的user.name 和 user.email信息。</p>
+<p>配置好了后，大家可以使用git config -l来查看当前的git配置列表。</p>
+<h2 id="2、远程仓库及其与本地仓库交互"><a href="#2、远程仓库及其与本地仓库交互" class="headerlink" title="2、远程仓库及其与本地仓库交互"></a>2、远程仓库及其与本地仓库交互</h2><h3 id="2-1、创建GitHub账号及获取SSH秘钥对"><a href="#2-1、创建GitHub账号及获取SSH秘钥对" class="headerlink" title="2.1、创建GitHub账号及获取SSH秘钥对"></a>2.1、创建GitHub账号及获取SSH秘钥对</h3><p>首先你必须有github帐号，账号请大家自行注册。由于你的本地Git仓库和远程GitHub仓库之间的传输是通过SSH协议加密的，因此需要进行一些设置。</p>
+<h4 id="2-1-1、检查电脑是否已经有SSH-keys。"><a href="#2-1-1、检查电脑是否已经有SSH-keys。" class="headerlink" title="2.1.1、检查电脑是否已经有SSH keys。"></a>2.1.1、检查电脑是否已经有SSH keys。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> -al ~/.ssh</span><br><span class="line"><span class="comment"># Lists the files in your .ssh directory, if they exist</span></span><br></pre></td></tr></table></figure>
+<p>默认情况下，public keys的文件名是以下的格式之一：id_dsa.pub、id_ecdsa.pub、id_ed25519.pub、id_rsa.pub。因此，如果列出的文件有public和private钥匙对（例如id_ras.pub和id_rsa），证明已存在SSH keys。</p>
+<h4 id="2-1-2、如果没有SSH-key，则生成新的SSH-key。"><a href="#2-1-2、如果没有SSH-key，则生成新的SSH-key。" class="headerlink" title="2.1.2、如果没有SSH key，则生成新的SSH key。"></a>2.1.2、如果没有SSH key，则生成新的SSH key。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -b 4096 -C <span class="string">&quot;your_email@example.com&quot;</span></span><br><span class="line"><span class="comment"># Creates a new ssh key, using the provided email as a label</span></span><br></pre></td></tr></table></figure>
+<p>之后一路回车即可（如果你用的着设置密码，请自行设置）。</p>
+<h4 id="2-1-3、在GitHub添加SSH-key。"><a href="#2-1-3、在GitHub添加SSH-key。" class="headerlink" title="2.1.3、在GitHub添加SSH key。"></a>2.1.3、在GitHub添加SSH key。</h4><p>首先，拷贝key：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clip &lt; ~/.ssh/id_rsa.pub</span><br><span class="line"><span class="comment"># Copies the contents of the id_rsa.pub file to your cllipboard</span></span><br></pre></td></tr></table></figure><br>然后，在GitHub右上方点击头像，选择”Settings”，在右边的”Personal settings”侧边栏选择”SSH Keys”。接着粘贴key，点击”Add key”按钮。最后，测试链接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line"><span class="comment"># Attempts to ssh to GitHub</span></span><br></pre></td></tr></table></figure><br>如果你看到：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">&#x27;github.com (207.97.227.239)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure><br>就键入：yes。之后将会看到如下信息：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not</span></span><br><span class="line"><span class="string">provide shell access.</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-2、创建远程仓库"><a href="#2-2、创建远程仓库" class="headerlink" title="2.2、创建远程仓库"></a>2.2、创建远程仓库</h3><p>有了GitBub账号，登录后找到右上角的“Create new…”，点击New repository(即创建一个新的仓库)，然后在Repository name中输入mygit（仓库名），点击Create repository即可。</p>
+<h3 id="2-3、将本地仓库推送至远程仓库"><a href="#2-3、将本地仓库推送至远程仓库" class="headerlink" title="2.3、将本地仓库推送至远程仓库"></a>2.3、将本地仓库推送至远程仓库</h3><p>现在这个远程的mygit仓库还是空的，下面我们把上面创建的本地mygit仓库推送到这个远程仓库中。首先要把一个已有的本地仓库与之关联，然后把本地仓库的内容推送到GitHub仓库。</p>
+<p>依次执行下面几步</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git inint  <span class="comment">#创建本地仓库</span></span><br><span class="line">$ git add README.md</span><br><span class="line">$ git commit -m <span class="string">&quot;first commit0&quot;</span></span><br><span class="line">$ git remote add origin git@github.com:username/repository.git <span class="comment">#将本地仓库和远程仓库关联，并命名为origin(可以随意修改)</span></span><br><span class="line">$ git push -u origin master</span><br><span class="line"><span class="comment">#使用git push -u origin master第一次推送master分支的所有内容</span></span><br><span class="line"><span class="comment">#以后每次本地提交后，就只需敲入命令git push origin master推送最新修改到远程即可。</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-4、从远程仓库clone至本地"><a href="#2-4、从远程仓库clone至本地" class="headerlink" title="2.4、从远程仓库clone至本地"></a>2.4、从远程仓库clone至本地</h3><p>只需执行一条命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> git@github.com:username/repository.git</span><br></pre></td></tr></table></figure></p>
+<h2 id="3、工作区-lt-–-gt-暂存区-lt-–-gt-版本库-和-git-status"><a href="#3、工作区-lt-–-gt-暂存区-lt-–-gt-版本库-和-git-status" class="headerlink" title="3、工作区&lt;–&gt;暂存区&lt;–&gt;版本库 和 git status"></a>3、工作区&lt;–&gt;暂存区&lt;–&gt;版本库 和 git status</h2><p>工作区(Working area)：就是咱们创建的本地文件夹。<br>暂存区(Staging area)：对文件操作(也就是需要提交的文件修改)的地方就叫暂存区。–注意：这里的修改包括对文件的增删改。<br>版本库(Repository)：就是你所看到的的那个隐藏的“.git”目录，它就是咱们的版本(仓)库。</p>
+<h3 id="3-1、git-status命令可以让咱们随时了解当前版本库的状态"><a href="#3-1、git-status命令可以让咱们随时了解当前版本库的状态" class="headerlink" title="3.1、git status命令可以让咱们随时了解当前版本库的状态"></a>3.1、git status命令可以让咱们随时了解当前版本库的状态</h3><p>下面我们目录下新建一个index.txt，然后咱们用git status来查看该文件的状态：利用 cat index.txt 可以查看文档内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        index.txt（红色字体）</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">&quot;git add&quot;</span> to track)</span><br></pre></td></tr></table></figure>
+<p>红色告诉我们该本件的状态仍处于工作区。</p>
+<p>接着咱们通过git add hellogit.txt命令将该本件添加到暂存区：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add index.txt</span><br></pre></td></tr></table></figure>
+<p>执行上面命令后，没有任何显示，就说明添加成功,用git status 查看一下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   index.txt</span><br></pre></td></tr></table></figure><br>说明已经添加进了暂存区</p>
+<h2 id="4、分支管理"><a href="#4、分支管理" class="headerlink" title="4、分支管理"></a>4、分支管理</h2><h3 id="4-1、创建一个gh-pages分支，然后切换到gh-pages分支上"><a href="#4-1、创建一个gh-pages分支，然后切换到gh-pages分支上" class="headerlink" title="4.1、创建一个gh-pages分支，然后切换到gh-pages分支上"></a>4.1、创建一个gh-pages分支，然后切换到gh-pages分支上</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch gh-pages</span><br><span class="line">$ git checkout gh-pages</span><br></pre></td></tr></table></figure>
+<p>可以用git branch 来查看当前分支</p>
+<h3 id="4-2、-推送本地项目的子文件到gh-pages"><a href="#4-2、-推送本地项目的子文件到gh-pages" class="headerlink" title="4.2、 推送本地项目的子文件到gh-pages"></a>4.2、 推送本地项目的子文件到gh-pages</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git branch gh-pages</span><br><span class="line">$ git checkout gh-pages</span><br><span class="line">$ git add <span class="string">&quot;dist&quot;</span></span><br><span class="line">$ git commit -m <span class="string">&quot;first commit&quot;</span></span><br><span class="line">$ git subtree push --prefix=dist origin gh-pages</span><br><span class="line"><span class="comment"># dist为本地项目的子文件名</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-3、合并分支"><a href="#4-3、合并分支" class="headerlink" title="4.3、合并分支"></a>4.3、合并分支</h3><p>合并分支命令很简单，但请注意：合并分支一定要切换至主分支，并且要合并的分支必须commit了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge gh-pages</span><br></pre></td></tr></table></figure>
+<p>合并分支只是合并内容，并不会删除分支</p>
+<h3 id="4-4、删除分支"><a href="#4-4、删除分支" class="headerlink" title="4.4、删除分支"></a>4.4、删除分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d gh-pages</span><br></pre></td></tr></table></figure>
+<p>好了，咱又只剩master分支了，可以看到无论是创建、合并还是删除分支，速度都是非常迅速的，这也是Git一个非常重要的特点，而且工作中常用分支来完成咱们的工作。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/08/25/cookie/" rel="next" title="JS中cookie的基本使用">
+                <i class="fa fa-chevron-left"></i> JS中cookie的基本使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/11/04/jquery-chajian/" rel="prev" title="jquery插件整理">
+                jquery插件整理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/avatar.gif"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E9%85%8D%E7%BD%AEgit"><span class="nav-number">1.</span> <span class="nav-text">1、配置git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E5%8F%8A%E5%85%B6%E4%B8%8E%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E4%BA%A4%E4%BA%92"><span class="nav-number">2.</span> <span class="nav-text">2、远程仓库及其与本地仓库交互</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1%E3%80%81%E5%88%9B%E5%BB%BAGitHub%E8%B4%A6%E5%8F%B7%E5%8F%8A%E8%8E%B7%E5%8F%96SSH%E7%A7%98%E9%92%A5%E5%AF%B9"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、创建GitHub账号及获取SSH秘钥对</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1%E3%80%81%E6%A3%80%E6%9F%A5%E7%94%B5%E8%84%91%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E6%9C%89SSH-keys%E3%80%82"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1、检查电脑是否已经有SSH keys。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2%E3%80%81%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89SSH-key%EF%BC%8C%E5%88%99%E7%94%9F%E6%88%90%E6%96%B0%E7%9A%84SSH-key%E3%80%82"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2、如果没有SSH key，则生成新的SSH key。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3%E3%80%81%E5%9C%A8GitHub%E6%B7%BB%E5%8A%A0SSH-key%E3%80%82"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3、在GitHub添加SSH key。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2%E3%80%81%E5%88%9B%E5%BB%BA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、创建远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3%E3%80%81%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%8E%A8%E9%80%81%E8%87%B3%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、将本地仓库推送至远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4%E3%80%81%E4%BB%8E%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93clone%E8%87%B3%E6%9C%AC%E5%9C%B0"><span class="nav-number">2.4.</span> <span class="nav-text">2.4、从远程仓库clone至本地</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%B7%A5%E4%BD%9C%E5%8C%BA-lt-%E2%80%93-gt-%E6%9A%82%E5%AD%98%E5%8C%BA-lt-%E2%80%93-gt-%E7%89%88%E6%9C%AC%E5%BA%93-%E5%92%8C-git-status"><span class="nav-number">3.</span> <span class="nav-text">3、工作区&lt;–&gt;暂存区&lt;–&gt;版本库 和 git status</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1%E3%80%81git-status%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E8%AE%A9%E5%92%B1%E4%BB%AC%E9%9A%8F%E6%97%B6%E4%BA%86%E8%A7%A3%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC%E5%BA%93%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">3.1.</span> <span class="nav-text">3.1、git status命令可以让咱们随时了解当前版本库的状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">4、分支管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAgh-pages%E5%88%86%E6%94%AF%EF%BC%8C%E7%84%B6%E5%90%8E%E5%88%87%E6%8D%A2%E5%88%B0gh-pages%E5%88%86%E6%94%AF%E4%B8%8A"><span class="nav-number">4.1.</span> <span class="nav-text">4.1、创建一个gh-pages分支，然后切换到gh-pages分支上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2%E3%80%81-%E6%8E%A8%E9%80%81%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%AD%90%E6%96%87%E4%BB%B6%E5%88%B0gh-pages"><span class="nav-number">4.2.</span> <span class="nav-text">4.2、 推送本地项目的子文件到gh-pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3%E3%80%81%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="nav-number">4.3.</span> <span class="nav-text">4.3、合并分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4%E3%80%81%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="nav-number">4.4.</span> <span class="nav-text">4.4、删除分支</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+</body>
+</html>

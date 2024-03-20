@@ -1,38 +1,694 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
 
 
-{% block title %} {{ page.title }} | {{ config.title }} {% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  
 
 
-{% block content %}
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/blog/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、 前言这是一篇使用GitHub Pages和Hexo搭建免费独立博客的总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub Pages + Hexo搭建博客">
+<meta property="og:url" content="http://yoursite.com/2016/08/07/blog/index.html">
+<meta property="og:site_name" content="Lin&#39;s Note">
+<meta property="og:description" content="一、 前言这是一篇使用GitHub Pages和Hexo搭建免费独立博客的总结。">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-08-07T09:04:35.000Z">
+<meta property="article:modified_time" content="2024-03-15T03:29:26.955Z">
+<meta property="article:author" content="Lin">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/07/blog/"/>
+
+  <title> GitHub Pages + Hexo搭建博客 | Lin's Note </title>
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    <a href="https://github.com/lin-sun" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/blog/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lin's Note</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
   <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GitHub Pages + Hexo搭建博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-07T17:04:35+08:00" content="2016-08-07">
+              2016-08-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h1 id="一、-前言"><a href="#一、-前言" class="headerlink" title="一、 前言"></a>一、 前言</h1><p>这是一篇使用GitHub Pages和Hexo搭建免费独立博客的总结。</p>
+<span id="more"></span>
+<p>如果是小小白，可以先花时间去了解下：</p>
+<ul>
+<li><a href="http://git-scm.com/book/zh/v2">Git</a></li>
+<li><a href="https://github.com/">GitHub</a></li>
+<li><a href="https://pages.github.com/">GitHub Pages</a></li>
+<li><a href="https://hexo.io/zh-cn/">Hexo</a></li>
+<li><a href="http://www.appinn.com/markdown/#autoescape">Markdown</a></li>
+</ul>
+<h1 id="二、-必要配置"><a href="#二、-必要配置" class="headerlink" title="二、 必要配置"></a>二、 必要配置</h1><h2 id="2-1-GitHub-Pages-仓库"><a href="#2-1-GitHub-Pages-仓库" class="headerlink" title="2.1 GitHub Pages 仓库"></a>2.1 GitHub Pages 仓库</h2><h3 id="2-1-1-创建对应仓库"><a href="#2-1-1-创建对应仓库" class="headerlink" title="2.1.1 创建对应仓库"></a>2.1.1 创建对应仓库</h3><p>在自己的GitHub账号下创建一个新的仓库，命名为blog。</p>
+<h2 id="2-2-Git"><a href="#2-2-Git" class="headerlink" title="2.2 Git"></a>2.2 Git</h2><h3 id="2-2-1-安装-Git"><a href="#2-2-1-安装-Git" class="headerlink" title="2.2.1 安装 Git"></a>2.2.1 安装 Git</h3><p>在windows下安装git比较常用的有两种方式：</p>
+<ol>
+<li><a href="http://git-scm.com/download/win">Git 官方版本的安装</a></li>
+<li><a href="https://desktop.github.com/">GitHub for Windows</a></li>
+</ol>
+<h3 id="2-2-2-配置-Git"><a href="#2-2-2-配置-Git" class="headerlink" title="2.2.2 配置 Git"></a>2.2.2 配置 Git</h3><p>当安装完Git应该做的第一件事情就是设置用户名称和邮件地址。这样做很重要，因为每一个Git的提交都会使用这些信息，并且它会写入你的每一次提交中，不可更改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;username&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;username@example.com&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-3-相关资料"><a href="#2-2-3-相关资料" class="headerlink" title="2.2.3 相关资料"></a>2.2.3 相关资料</h3><ul>
+<li><a href="http://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git">安装 Git</a></li>
+<li><a href="http://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%88%9D%E6%AC%A1%E8%BF%90%E8%A1%8C-Git-%E5%89%8D%E7%9A%84%E9%85%8D%E7%BD%AE">配置 Git</a></li>
+</ul>
+<h2 id="2-3-Git-与-GitHub"><a href="#2-3-Git-与-GitHub" class="headerlink" title="2.3 Git 与 GitHub"></a>2.3 Git 与 GitHub</h2><h3 id="2-3-1-git与github的区别"><a href="#2-3-1-git与github的区别" class="headerlink" title="2.3.1 git与github的区别"></a>2.3.1 git与github的区别</h3><p>这里，我们要区分清楚git与github。</p>
+<p>git是一个版本控制的工具，而github有点类似于远程仓库，用于存放用git管理的各种项目。</p>
+<h3 id="2-3-2-与github建立联系"><a href="#2-3-2-与github建立联系" class="headerlink" title="2.3.2 与github建立联系"></a>2.3.2 与github建立联系</h3><p>为了能够在本地使用git管理github上的项目，需要进行一些配置，这里介绍SSH的方法。</p>
+<h4 id="2-3-2-1-检查电脑是否已经有SSH-keys。"><a href="#2-3-2-1-检查电脑是否已经有SSH-keys。" class="headerlink" title="2.3.2.1 检查电脑是否已经有SSH keys。"></a>2.3.2.1 检查电脑是否已经有SSH keys。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">ls</span> -al ~/.ssh</span><br><span class="line"><span class="comment"># Lists the files in your .ssh directory, if they exist</span></span><br></pre></td></tr></table></figure>
+<p>默认情况下，public keys的文件名是以下的格式之一：id_dsa.pub、id_ecdsa.pub、id_ed25519.pub、id_rsa.pub。因此，如果列出的文件有public和private钥匙对（例如id_ras.pub和id_rsa），证明已存在SSH keys。</p>
+<h4 id="2-3-2-2-如果没有SSH-key，则生成新的SSH-key。"><a href="#2-3-2-2-如果没有SSH-key，则生成新的SSH-key。" class="headerlink" title="2.3.2.2 如果没有SSH key，则生成新的SSH key。"></a>2.3.2.2 如果没有SSH key，则生成新的SSH key。</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -b 4096 -C <span class="string">&quot;your_email@example.com&quot;</span></span><br><span class="line"><span class="comment"># Creates a new ssh key, using the provided email as a label</span></span><br></pre></td></tr></table></figure>
+<p>之后一路回车即可。</p>
+<h4 id="2-3-2-3-向ssh-agent添加key。"><a href="#2-3-2-3-向ssh-agent添加key。" class="headerlink" title="2.3.2.3 向ssh-agent添加key。"></a>2.3.2.3 向ssh-agent添加key。</h4><p>首先确保ssh-agent可运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start the ssh-agent in the background</span></span><br><span class="line">$ ssh-agent -s</span><br></pre></td></tr></table></figure><br>然后添加SSH key：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-3-2-4-在GitHub添加SSH-key。"><a href="#2-3-2-4-在GitHub添加SSH-key。" class="headerlink" title="2.3.2.4 在GitHub添加SSH key。"></a>2.3.2.4 在GitHub添加SSH key。</h4><p>首先，拷贝key：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clip &lt; ~/.ssh/id_rsa.pub</span><br><span class="line"><span class="comment"># Copies the contents of the id_rsa.pub file to your cllipboard</span></span><br></pre></td></tr></table></figure><br>然后，在GitHub右上方点击头像，选择”Settings”，在右边的”Personal settings”侧边栏选择”SSH Keys”。接着粘贴key，点击”Add key”按钮。最后，测试链接：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line"><span class="comment"># Attempts to ssh to GitHub</span></span><br></pre></td></tr></table></figure><br>如果你看到：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host <span class="string">&#x27;github.com (207.97.227.239)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure><br>就键入：yes。之后将会看到如下信息：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not</span></span><br><span class="line"><span class="string">provide shell access.</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-3-3-相关资料"><a href="#2-3-3-相关资料" class="headerlink" title="2.3.3 相关资料"></a>2.3.3 相关资料</h3><ul>
+<li><a href="https://help.github.com/articles/generating-ssh-keys/">Generating SSH keys</a></li>
+</ul>
+<h2 id="2-4-Hexo"><a href="#2-4-Hexo" class="headerlink" title="2.4 Hexo"></a>2.4 Hexo</h2><h3 id="2-4-1-安装Hexo"><a href="#2-4-1-安装Hexo" class="headerlink" title="2.4.1 安装Hexo"></a>2.4.1 安装Hexo</h3><p>安装Hexo相当简单。在安装之前，必须检查电脑中是否已经安装下列应用程序：</p>
+<ul>
+<li><a href="http://nodejs.org/">Node.js</a></li>
+<li><a href="http://git-scm.com/">Git</a><br>如果您的电脑中已经安装上述必备程序，那么恭喜您！接下来只需要使用 npm 即可完成 Hexo 的安装。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-4-2-使用Hexo建站"><a href="#2-4-2-使用Hexo建站" class="headerlink" title="2.4.2 使用Hexo建站"></a>2.4.2 使用Hexo建站</h3><p>安装完后，在你喜欢的文件夹内（例如D：\Hexo），点击鼠标右键选择Git bash，输入以下指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+<p>该命令会在目标文件夹内建立网站所需要的所有文件。接下来是安装依赖包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<p>这样，我们就已经搭建起本地的Hexo博客了。可以先执行以下命令（在对应文件夹下），然后再浏览器输入localhost:4000查看。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>这个博客只是本地的，别人是浏览不了的，之后需要部署到GitHub上。</p>
+<h3 id="2-4-3-相关资料"><a href="#2-4-3-相关资料" class="headerlink" title="2.4.3 相关资料"></a>2.4.3 相关资料</h3><ul>
+<li><a href="https://hexo.io/zh-cn/docs/">Hexo 官方文档</a></li>
+</ul>
+<h2 id="三、一般的搭建方法"><a href="#三、一般的搭建方法" class="headerlink" title="三、一般的搭建方法"></a>三、一般的搭建方法</h2><p>在上面，我们已经配置好了所需的所有东西，也成功地搭建了一个本地Hexo博客。现在，需要使用GitHub Pages搭建一个别人能够访问的Hexo博客了。</p>
+<h3 id="3-1-使用默认theme"><a href="#3-1-使用默认theme" class="headerlink" title="3.1 使用默认theme"></a>3.1 使用默认theme</h3><p>我们继续使用上面的文件夹D:\Hexo（也可以新建一个文件夹重新生成），然后编辑该文件夹下的_config.yml。</p>
+<p>默认生成的_config.yml：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: http://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>:</span><br></pre></td></tr></table></figure></p>
+<p>修改后的_config.yml：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: 对应仓库的SSH地址（可以在GitHub对应的仓库中复制）</span><br><span class="line">  branch: 分支（User Pages为master，Project Pages为gh-pages）</span><br></pre></td></tr></table></figure><br>如果你的仓库不是使用的github的主仓库，则需要改_config.yml的root：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span></span><br><span class="line">url: http://yoursite.com</span><br><span class="line">root: /blog/</span><br><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br></pre></td></tr></table></figure>
+<p>为了能够使Hexo部署到GitHub上，需要安装一个插件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后，执行下列指令即可完成部署：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>如果 hexo deploy 报错，请在Git Bash里边打开重新走上面两步</p>
+<p>之后，可以通过在浏览器键入：username.github.io/blog进行浏览，开心吧~</p>
+<h3 id="3-2-其他theme"><a href="#3-2-其他theme" class="headerlink" title="3.2 其他theme"></a>3.2 其他theme</h3><p>如果想要使用其他主题，可以使用git clone将别人的主题拷贝到D:\Hexo\themes下，然后将_config.yml中的theme: landscape改为对应的主题名字。</p>
+<p>详细步骤可以参考网上的指南。</p>
+<p>提示：上述搭建步骤大量参考了yangruihan的博客，如果你对搭建过程还有疑问，可以查看他的博文<a href="http://sunwhut.com/2015/10/30/buildBlog/">如何利用GitHub Pages和Hexo快速搭建个人博客</a></p>
+<h3 id="3-3-发表博文"><a href="#3-3-发表博文" class="headerlink" title="3.3 发表博文"></a>3.3 发表博文</h3><p>辛苦了这么久，终于回到我们搭建博客最初的目标–写作，现在来看看怎么写博文并发表吧。</p>
+<h4 id="3-3-1-新建博文"><a href="#3-3-1-新建博文" class="headerlink" title="3.3.1 新建博文"></a>3.3.1 新建博文</h4><p>我们可以使用命令新建一篇博文,使用 Git Shell 进入 Hexo 文件夹，输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;文章题目&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>命令执行完后，就会发现在 Hexo\source_posts 目录中多了一个文件博文名.md，这就是我们刚才新建的博文。</p>
+</li>
+<li><p>此外，我们也可以直接进入 Hexo\source_posts 目录中，右键新建一个文本文档，将名字改为博文名.md,这样也新建了一篇博文。</p>
+</li>
+</ul>
+<h4 id="3-3-2-新建页面"><a href="#3-3-2-新建页面" class="headerlink" title="3.3.2 新建页面"></a>3.3.2 新建页面</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo new page <span class="string">&quot;页面名称&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令执行完后，就会发现在在 Hexo\source 目录中多了一个文件夹，里面还有一个index.md,这就代表我们新建了一个页面。</li>
+</ul>
+<h3 id="3-4-写博文"><a href="#3-4-写博文" class="headerlink" title="3.4 写博文"></a>3.4 写博文</h3><p>用文本编辑器打开上面新建的博文，如下所示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: GitHub Pages + Hexo搭建博客</span><br><span class="line"><span class="built_in">date</span>: 2016-08-07 17:04:35</span><br><span class="line">tags:</span><br><span class="line">categories: Hexo</span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>新建的页面略有不同，没有tags和categories标签。</p>
+</li>
+<li><p>三个”-“后面就是博文的正文内容，接下来就是正儿八经地撰写博文了。</p>
+</li>
+</ul>
+<h3 id="3-5-发博文"><a href="#3-5-发博文" class="headerlink" title="3.5 发博文"></a>3.5 发博文</h3><p>博文写好了，依然在 Git Shell 中进入 Hexo 文件夹，执行下面几条命令，将博客部署到 GitHub 上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">(若要本地预览就先执行 hexo server)</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">快捷命令：</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo d == hexo deploy</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure>
+<p>还能组合使用，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
+<p>刷新你的个人博客，就可以看到新鲜出炉的博文了。</p>
+<h2 id="四、安装主题"><a href="#四、安装主题" class="headerlink" title="四、安装主题"></a>四、安装主题</h2><h3 id="4-1-选择主题"><a href="#4-1-选择主题" class="headerlink" title="4.1 选择主题"></a>4.1 选择主题</h3><p>我们刚才使用Hexo生成的博客使用的是Hexo的默认主题：Landscape。怎么说呢，这个主题猛地一看还行，仔细一看还不如猛地一看。</p>
+<p>不过hexo 给我们提供了大量的主题，<a href="https://github.com/hexojs/hexo/wiki/Themes">Themes·Hexo</a> 我选择的是这个主题：NexT。</p>
+<h3 id="4-2-安装NexT主题"><a href="#4-2-安装NexT主题" class="headerlink" title="4.2 安装NexT主题"></a>4.2 安装NexT主题</h3><p>Hexo 有两份主要的配置文件<code>_config.yml</code>，一份位于站点根目录下，另一份位于主题目录下。为了描述方便，在以下说明中，将前者称为 <code>站点配置文件</code>，后者称为 <code>主题配置文件</code>。</p>
+<h4 id="4-2-1-下载-NexT-主题"><a href="#4-2-1-下载-NexT-主题" class="headerlink" title="4.2.1 下载 NexT 主题"></a>4.2.1 下载 NexT 主题</h4><p>使用 Git Shell 进入 Hexo 文件夹，输入以下两条命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Hexo</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></p>
+<h4 id="4-2-2-启用NexT主题"><a href="#4-2-2-启用NexT主题" class="headerlink" title="4.2.2 启用NexT主题"></a>4.2.2 启用NexT主题</h4><p>下载完成后，打开 <code>站点配置文件</code>，找到 theme 字段，并将其值更改为 next。</p>
+<h4 id="4-2-3-验证主题是否启用"><a href="#4-2-3-验证主题是否启用" class="headerlink" title="4.2.3 验证主题是否启用"></a>4.2.3 验证主题是否启用</h4><p>执行上面发博文的命令，刷新你的个人博客，就能看到你设置的主题是否启用。</p>
+<h3 id="4-3-设置NexT主题和第三方服务"><a href="#4-3-设置NexT主题和第三方服务" class="headerlink" title="4.3 设置NexT主题和第三方服务"></a>4.3 设置NexT主题和第三方服务</h3><p>安装完NexT之后，还是发现不够漂亮对不对，所以下面我们来慢慢地润色你的个人博客。</p>
+<h4 id="4-3-1-选择样式"><a href="#4-3-1-选择样式" class="headerlink" title="4.3.1 选择样式"></a>4.3.1 选择样式</h4><p>NexT默认的样式其实也比较丑，幸好作者提供了一款十分漂亮的样式:Mist。启用 Mist 很简单，仅需在 <code>主题配置文件</code>中将 #scheme: Mist 前面的 # 注释去掉即可。</p>
+<h4 id="4-3-2-菜单设置"><a href="#4-3-2-菜单设置" class="headerlink" title="4.3.2 菜单设置"></a>4.3.2 菜单设置</h4><p>菜单配置在 主题配置文件 的 menu，下面是菜单配置示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  <span class="comment">#home: /</span></span><br><span class="line">  archives: /archives</span><br><span class="line">  about: /about</span><br><span class="line">  categories: /categories</span><br><span class="line">  tags: /tags</span><br><span class="line">  <span class="comment">#commonweal: /404.html</span></span><br></pre></td></tr></table></figure>
+<p>其它的很多在<a href="http://theme-next.iissnan.com/">NexT官方文档</a>里面已经讲的很清楚了,可以自己去研究研究。</p>
+<h2 id="五、-优化部署与管理"><a href="#五、-优化部署与管理" class="headerlink" title="五、 优化部署与管理"></a>五、 优化部署与管理</h2><h3 id="5-1-概述"><a href="#5-1-概述" class="headerlink" title="5.1 概述"></a>5.1 概述</h3><p>Hexo部署到GitHub上的文件，是.md（你的博文）转化之后的.html（静态网页）。因此，当你重装电脑或者想在不同电脑上修改博客时，就不可能了（除非你自己写html o(^▽^)o ）。</p>
+<p>其实，Hexo生成的网站文件中有.gitignore文件，因此它的本意也是想我们将Hexo生成的网站文件存放到GitHub上进行管理的（而不是用U盘或者云备份啦(╬▔皿▔)凸）。这样，不仅解决了上述的问题，还可以通过git的版本控制追踪你的博文的修改过程，是极赞的。</p>
+<p>但是，如果每一个GitHub Pages都需要创建一个额外的仓库来存放Hexo网站文件，我感觉很麻烦（10个项目需要20个仓库(ˉ▽ˉ；)…）。</p>
+<p>所以，我利用了分支！！！</p>
+<p>简单地说，每个想建立GitHub Pages的仓库，起码有两个分支，一个用来存放Hexo网站的文件，一个用来发布网站。</p>
+<p>下面以我的博客作为例子详细地讲述。</p>
+<h3 id="5-2-我的博客搭建流程"><a href="#5-2-我的博客搭建流程" class="headerlink" title="5.2 我的博客搭建流程"></a>5.2 我的博客搭建流程</h3><ol>
+<li>创建仓库，blog</li>
+<li>创建两个分支：master 与 gh-pages;</li>
+<li>使用git clone git@github.com:lin-sun/blog.git拷贝master仓库；</li>
+<li>依次执行git add .、git commit -m “…”、git push origin master提交网站相关的文件；</li>
+</ol>
+<p>这样一来，在GitHub上的lin-sun.github.io仓库就有两个分支，一个master分支用来存放网站的原始文件，一个gh-pages分支用来存放生成的静态网页。完美( •̀ ω •́ )y！</p>
+<h3 id="5-3-我的博客管理流程"><a href="#5-3-我的博客管理流程" class="headerlink" title="5.3 我的博客管理流程"></a>5.3 我的博客管理流程</h3><h4 id="5-3-1-日常修改"><a href="#5-3-1-日常修改" class="headerlink" title="5.3.1 日常修改"></a>5.3.1 日常修改</h4><p>在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理：</p>
+<ol>
+<li>依次执行git add .、git commit -m “…”、git push origin master指令将改动推送到GitHub（此时当前分支应为master）；</li>
+<li>然后才执行hexo generate -d发布网站到gh-pages分支上。</li>
+</ol>
+<p>虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催….的情况，调转顺序就有问题了）。</p>
+<h4 id="5-3-2-本地资料丢失"><a href="#5-3-2-本地资料丢失" class="headerlink" title="5.3.2 本地资料丢失"></a>5.3.2 本地资料丢失</h4><p>当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤：</p>
+<ol>
+<li>使用git clone git@github.com:lin-sun/blog.git拷贝仓库（默认分支为master）；</li>
+<li>在本地新拷贝的blog文件夹下通过Git bash依次执行下列指令：npm install hexo、npm install、npm install hexo-deployer-git（记得，不需要hexo init这条指令）。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2016/08/07/jquery/" rel="next" title="jquery概述">
+                <i class="fa fa-chevron-left"></i> jquery概述
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2016/08/07/canvas/" rel="prev" title="canvas概述">
+                canvas概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
 
     <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+      
     </div>
   </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+          </div>
+          
 
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/blog/images/avatar.gif"
+               alt="" />
+          <p class="site-author-name" itemprop="name"></p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/blog/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">一、 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E5%BF%85%E8%A6%81%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">二、 必要配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-GitHub-Pages-%E4%BB%93%E5%BA%93"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 GitHub Pages 仓库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-%E5%88%9B%E5%BB%BA%E5%AF%B9%E5%BA%94%E4%BB%93%E5%BA%93"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 创建对应仓库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Git"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%E5%AE%89%E8%A3%85-Git"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 安装 Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-%E9%85%8D%E7%BD%AE-Git"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 配置 Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.2.3 相关资料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Git-%E4%B8%8E-GitHub"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Git 与 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-git%E4%B8%8Egithub%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 git与github的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-%E4%B8%8Egithub%E5%BB%BA%E7%AB%8B%E8%81%94%E7%B3%BB"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 与github建立联系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-%E6%A3%80%E6%9F%A5%E7%94%B5%E8%84%91%E6%98%AF%E5%90%A6%E5%B7%B2%E7%BB%8F%E6%9C%89SSH-keys%E3%80%82"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">2.3.2.1 检查电脑是否已经有SSH keys。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-2-%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89SSH-key%EF%BC%8C%E5%88%99%E7%94%9F%E6%88%90%E6%96%B0%E7%9A%84SSH-key%E3%80%82"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">2.3.2.2 如果没有SSH key，则生成新的SSH key。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-3-%E5%90%91ssh-agent%E6%B7%BB%E5%8A%A0key%E3%80%82"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">2.3.2.3 向ssh-agent添加key。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-4-%E5%9C%A8GitHub%E6%B7%BB%E5%8A%A0SSH-key%E3%80%82"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">2.3.2.4 在GitHub添加SSH key。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="nav-number">2.3.3.</span> <span class="nav-text">2.3.3 相关资料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Hexo"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-%E5%AE%89%E8%A3%85Hexo"><span class="nav-number">2.4.1.</span> <span class="nav-text">2.4.1 安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-%E4%BD%BF%E7%94%A8Hexo%E5%BB%BA%E7%AB%99"><span class="nav-number">2.4.2.</span> <span class="nav-text">2.4.2 使用Hexo建站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-3-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99"><span class="nav-number">2.4.3.</span> <span class="nav-text">2.4.3 相关资料</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%B8%80%E8%88%AC%E7%9A%84%E6%90%AD%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">三、一般的搭建方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4theme"><span class="nav-number">2.5.1.</span> <span class="nav-text">3.1 使用默认theme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%85%B6%E4%BB%96theme"><span class="nav-number">2.5.2.</span> <span class="nav-text">3.2 其他theme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-%E5%8F%91%E8%A1%A8%E5%8D%9A%E6%96%87"><span class="nav-number">2.5.3.</span> <span class="nav-text">3.3 发表博文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-%E6%96%B0%E5%BB%BA%E5%8D%9A%E6%96%87"><span class="nav-number">2.5.3.1.</span> <span class="nav-text">3.3.1 新建博文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-2-%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2"><span class="nav-number">2.5.3.2.</span> <span class="nav-text">3.3.2 新建页面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-%E5%86%99%E5%8D%9A%E6%96%87"><span class="nav-number">2.5.4.</span> <span class="nav-text">3.4 写博文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-%E5%8F%91%E5%8D%9A%E6%96%87"><span class="nav-number">2.5.5.</span> <span class="nav-text">3.5 发博文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98"><span class="nav-number">2.6.</span> <span class="nav-text">四、安装主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E9%80%89%E6%8B%A9%E4%B8%BB%E9%A2%98"><span class="nav-number">2.6.1.</span> <span class="nav-text">4.1 选择主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%AE%89%E8%A3%85NexT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.6.2.</span> <span class="nav-text">4.2 安装NexT主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-1-%E4%B8%8B%E8%BD%BD-NexT-%E4%B8%BB%E9%A2%98"><span class="nav-number">2.6.2.1.</span> <span class="nav-text">4.2.1 下载 NexT 主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2-%E5%90%AF%E7%94%A8NexT%E4%B8%BB%E9%A2%98"><span class="nav-number">2.6.2.2.</span> <span class="nav-text">4.2.2 启用NexT主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3-%E9%AA%8C%E8%AF%81%E4%B8%BB%E9%A2%98%E6%98%AF%E5%90%A6%E5%90%AF%E7%94%A8"><span class="nav-number">2.6.2.3.</span> <span class="nav-text">4.2.3 验证主题是否启用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%AE%BE%E7%BD%AENexT%E4%B8%BB%E9%A2%98%E5%92%8C%E7%AC%AC%E4%B8%89%E6%96%B9%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.6.3.</span> <span class="nav-text">4.3 设置NexT主题和第三方服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-1-%E9%80%89%E6%8B%A9%E6%A0%B7%E5%BC%8F"><span class="nav-number">2.6.3.1.</span> <span class="nav-text">4.3.1 选择样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-2-%E8%8F%9C%E5%8D%95%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.6.3.2.</span> <span class="nav-text">4.3.2 菜单设置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81-%E4%BC%98%E5%8C%96%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%AE%A1%E7%90%86"><span class="nav-number">2.7.</span> <span class="nav-text">五、 优化部署与管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">2.7.1.</span> <span class="nav-text">5.1 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="nav-number">2.7.2.</span> <span class="nav-text">5.2 我的博客搭建流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E7%AE%A1%E7%90%86%E6%B5%81%E7%A8%8B"><span class="nav-number">2.7.3.</span> <span class="nav-text">5.3 我的博客管理流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-1-%E6%97%A5%E5%B8%B8%E4%BF%AE%E6%94%B9"><span class="nav-number">2.7.3.1.</span> <span class="nav-text">5.3.1 日常修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-2-%E6%9C%AC%E5%9C%B0%E8%B5%84%E6%96%99%E4%B8%A2%E5%A4%B1"><span class="nav-number">2.7.3.2.</span> <span class="nav-text">5.3.2 本地资料丢失</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lin</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+</body>
+</html>
