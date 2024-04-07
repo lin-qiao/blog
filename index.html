@@ -308,129 +308,20 @@
 <li><p>API 服务层：<br>当与后端 API 进行交互时，可以创建一个单例的 API 服务层来封装所有的 API 请求。这样，整个应用就可以通过这个唯一的 API 服务实例来发送请求，避免了在每个组件中都单独创建 API 请求逻辑的冗余。</p>
 </li>
 </ul>
+<h3 id="浏览器有哪些单位"><a href="#浏览器有哪些单位" class="headerlink" title="浏览器有哪些单位"></a>浏览器有哪些单位</h3><p>px em rem vh vw<br>px 是绝对单位<br>vh vw 根据浏览器窗口大小改变<br>em rem 是相对单位 em 根据自身或者祖先元素的 font-size 来计算 rem 根据 html 标签的 font-size 来计算</p>
+<h3 id="rem-是什么"><a href="#rem-是什么" class="headerlink" title="rem 是什么"></a>rem 是什么</h3><p>rem 是移动端适配的一个单位<br>赋值给 html 标签给一个 font-size = <code>设备可视区域尺寸 / 设计图尺寸 * 100</code><br>然后 1rem 就等于这个 fontsize 大小<br>mete viewport 可以用来设置手机屏幕可视区域大小<br>width=device-width 设置视区域宽度为设备宽度</p>
+<h3 id="304-是什么，如何清除-304"><a href="#304-是什么，如何清除-304" class="headerlink" title="304 是什么，如何清除 304"></a>304 是什么，如何清除 304</h3><p>当浏览器访问静态资源的时候，如果已经访问过这个文件，会优先访问本地缓存的文件，这时状态就会提示 304<br>清除 304 可以通过给文件路径添加一个可修改的参数，比如 v=1 或者时间戳</p>
+<h3 id="设置-flex-后哪些属性会失效"><a href="#设置-flex-后哪些属性会失效" class="headerlink" title="设置 flex 后哪些属性会失效"></a>设置 flex 后哪些属性会失效</h3><p>flex 给了子元素空间分布和对齐能力<br>浮动 float 清除浮动 clear:both，垂直居中 vertical-align<br>如果子元素是行内元素，会变成块元素，display:inline; 父元素 text-align 等会失效</p>
+<h3 id="v-for-key-的作用"><a href="#v-for-key-的作用" class="headerlink" title="v-for key 的作用"></a>v-for key 的作用</h3><p>key 的作用主要用来优化 diff 算法， sameVnode 会根据 key 和标签名判断是否是同一节点, 设置了 key 可以减少 diff 的比较<br>key 不要设置成 index， 数组增加删除会导致 index 变化，diff 算法比较变多</p>
+<h3 id="new-操作符执行了哪些操作"><a href="#new-操作符执行了哪些操作" class="headerlink" title="new 操作符执行了哪些操作"></a>new 操作符执行了哪些操作</h3><p>1、创建一个对象<br>2、把该对象的<code>__proto__</code>指向 fn 的 prototype<br>3、fn 的 this 指向该对象</p>
+<h3 id="如何保证构造函数只能被-new-调用"><a href="#如何保证构造函数只能被-new-调用" class="headerlink" title="如何保证构造函数只能被 new 调用"></a>如何保证构造函数只能被 new 调用</h3><p>1、通过 instanceof 判断<br>2、通过 new.target 判断<br>3、使用 class</p>
+<h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p>匹配符：<br>d? d 出现 0/1 次<br>a＊ a 可以出现 0/多次<br>a+ a 出现一次以上<br>a｛6｝ a 出现 6 次<br>a｛2，｝ a 出现 2 次以上<br>a｛2，6｝ a 出现 2-6 次<br>匹配多个字符：<br>(ab)+ ab 出现一次以上<br>或运算：<br>a (cat|dog) 匹配 a cat or a dog<br>a cat|dog 匹配 a cat or dog<br>字符类：<br>匹配由 abc 构成的数据【abc】+ abc 出现一次以上 abc aabbcc<br>【a-zA-Z0-9】 ABCabc123<br>^ 排除 【^0-9】 匹配 0-9 之外的数据(包括换行符)<br>元字符<br>\d 数字字符 \d+ 匹配一个以上的数字<br>\D 非数字字符<br>\w 单词字符 单词 数字 下划线即英文字符<br>\W 非单词字符<br>\s 空白符 包含空格和换行符<br>\S 非空白字符<br>\b 单词的边界 单词的开头或结尾 单词与符号之前的边界<br>\B 非单词的边界 符号与符号 单词与单词的边界<br>. 任意字符不包含换行符<br>. 表示. 通过\进行了转意<br>^ 匹配行首 $ 匹配行尾<br>＊+｛｝贪婪匹配<br><strong><b><a href="https://www.wondershare">https://www.wondershare</a>. com</strong></b><br>&lt;.+&gt; 会匹配整串 因为是贪婪匹配<br>&lt;.+?&gt; 只匹配两个标签代码，➕? 设置为懒惰匹配</p>
+<h3 id="前端首屏加载优化"><a href="#前端首屏加载优化" class="headerlink" title="前端首屏加载优化"></a>前端首屏加载优化</h3><p>1、减少入口文件体积，常用的方法是路由懒加载<br>2、静态资源 cdn 缓存，vue, vue-router axios 等库通过 cdn 引入<br>3、UI 框架按需引入，不要全部引入<br>4、避免组件重复打包，通过 splitChunks 代码分割<br>5、图片资源压缩<br>6、gzip 压缩<br>7、图片懒加载<br>8、资源预渲染</p>
+<h3 id="js-判断对象或者数组的方法"><a href="#js-判断对象或者数组的方法" class="headerlink" title="js 判断对象或者数组的方法"></a>js 判断对象或者数组的方法</h3><p>instanceof 根据原型链来判断<br>Object.prototype.toString.call()<br>isArray 判断数组</p>
+<h3 id="js-判断数组对象为空的方法"><a href="#js-判断数组对象为空的方法" class="headerlink" title="js 判断数组对象为空的方法"></a>js 判断数组对象为空的方法</h3><p>JSON.stringify()<br>.length 判断数组<br>Object.keys().length 判断对象</p>
+<h3 id="ajax-流程"><a href="#ajax-流程" class="headerlink" title="ajax 流程"></a>ajax 流程</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;https://example.com/data&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>(<span class="string">&quot;key1=value1&amp;key2=value2&quot;</span>);</span><br><span class="line">xhr.<span class="property">onreadystatechange</span>;</span><br><span class="line">xhr.<span class="property">onload</span>;</span><br></pre></td></tr></table></figure>
 
           
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2023/03/12/vue3%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url">
-                  vue3面试题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2023-03-12T00:00:00+08:00" content="2023-03-12">
-              2023-03-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">面试题</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="vue2-和-vue3-的区别"><a href="#vue2-和-vue3-的区别" class="headerlink" title="vue2 和 vue3 的区别"></a>vue2 和 vue3 的区别</h3><ul>
-<li>1、 vue3 引入 composition Api 相比 vue2 代码块逻辑更清楚。</li>
-<li>2、 vue3 使用函数，import 导入，可以提高摇树优化（Tree Shaking）并减少代码体积</li>
-<li>3、 vue3 对 ts 支持更友好</li>
-<li>4、 vue3 可以像 react 那样把重复功能封装成一个 hooks 和组件解耦， 而 vue2 是通过 mixins，多个 mixins 容易造成命名冲突</li>
-<li>5、 vue3 采用 pinia 进行状态管理，pinia 有更好的 ts 支持，并且抛弃 mutations 简化了状态管理</li>
-<li>6、 vue3 采用 proxy 进行数据劫持，可以劫持整个对象，vue2 采用 object.defineProperty 需要遍历数据，并且无法监听对象新增删除熟悉和对数组操作
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2023/03/12/vue3%E9%9D%A2%E8%AF%95%E9%A2%98/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
         
       
     </div>
@@ -543,6 +434,131 @@
           <h3 id="微信小程序登录流程"><a href="#微信小程序登录流程" class="headerlink" title="微信小程序登录流程"></a>微信小程序登录流程</h3><p>调用 wx.login 获取 code, 把 code 传递给后端，后端先通过 appid 和 appsecret 获取 access_token, 通过 access_token,appid,appsecret,code 调用 wxapi 获取 openid 和 session_key， 后端根据这两个参数生成登录态 token，返回给前端</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/blog/2023/03/12/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%9D%A2%E8%AF%95%E9%A2%98/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2023/03/12/vue%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url">
+                  vue3面试题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2023-03-12T00:00:00+08:00" content="2023-03-12">
+              2023-03-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index">
+                    <span itemprop="name">面试题</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="created-和-mounted-的区别"><a href="#created-和-mounted-的区别" class="headerlink" title="created 和 mounted 的区别"></a>created 和 mounted 的区别</h3><p>created 在实例创建后调用，可以获取到 this，无法获取到 dom, 可以进行一些接口请求<br>mounted 在实例挂载 dom 后调用，可以通过 nextTick 获取 dom 元素，ref 等</p>
+<h3 id="computed-和-watch-有什么区别"><a href="#computed-和-watch-有什么区别" class="headerlink" title="computed 和 watch 有什么区别"></a>computed 和 watch 有什么区别</h3><p>1、computed 是计算属性，watch 是监听 data 中数据变化<br>2、computed 有缓存功能， 可以设置 get 和 set, 可以直接在模板中用<br>3、watch 支持异步， computed 不支持<br>4、computed 第一次加载就触发，watch 第一次加载不触发<br>5、computed 中的函数必须调用 return；watch 不是。<br>6、使用场景：<br>computed：一个属性受到多个属性影响，如：购物车商品结算。<br>watch：一个数据影响多条数据，如：搜索数据。</p>
+<p>immediate 组件创建时刻执行与否<br>immediate: true,第一次加载时监听（默认为 false）<br>deep 深度监听 不推荐使用(非常的消耗性能)<br>监听的属性是对象的话 不开启 deep 对象子属性变化不会触发 watch<br>开启了 deep 对象内部所有子属性变化 都会触发 watch</p>
+<h3 id="权限控制"><a href="#权限控制" class="headerlink" title="权限控制"></a>权限控制</h3><p>在 beforeEach 中判断是否已经请求过路由表，有就用本地的，没有就重新请求，然后通过 addRoutes 添加到 vue 路由中去，这样会保证每次刷新路由都不会丢失</p>
+<h3 id="vue2-和-vue3-的区别"><a href="#vue2-和-vue3-的区别" class="headerlink" title="vue2 和 vue3 的区别"></a>vue2 和 vue3 的区别</h3><ul>
+<li>1、 vue3 引入 composition Api 相比 vue2 代码块逻辑更清楚。</li>
+<li>2、 vue3 使用函数，import 导入，可以提高摇树优化（Tree Shaking）并减少代码体积</li>
+<li>3、 vue3 对 ts 支持更友好</li>
+<li>4、 vue3 可以像 react 那样把重复功能封装成一个 hooks 和组件解耦， 而 vue2 是通过 mixins，多个 mixins 容易造成命名冲突</li>
+<li>5、 vue3 采用 pinia 进行状态管理，pinia 有更好的 ts 支持，并且抛弃 mutations 简化了状态管理</li>
+<li>6、 vue3 采用 proxy 进行数据劫持，可以劫持整个对象，vue2 采用 object.defineProperty 需要遍历数据，并且无法监听对象新增删除熟悉和对数组操作
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2023/03/12/vue%E9%9D%A2%E8%AF%95%E9%A2%98/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
