@@ -92,7 +92,7 @@
 <meta property="og:description" content="工厂模式和单例模式工厂模式是一种创建对象的模式，它将对象的创建过程封装在一个函数中，通过这个函数可以创建出具有相同特征的对象单例模式则是一种确保一个类只有一个实例 工厂模式在 Vue 中的其他例子： 组件生成器：当需要动态创建组件时，可以使用工厂函数来根据参数生成不同的组件实例。例如，一个弹窗组件可能需要根据传入的不同配置（如标题、内容等）来动态生成不同的弹窗实例。  工具类函数：工厂模式也可以用">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-03-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-04-03T09:23:17.917Z">
+<meta property="article:modified_time" content="2024-04-07T08:56:52.585Z">
 <meta property="article:author" content="Lin">
 <meta name="twitter:card" content="summary">
 
@@ -303,6 +303,7 @@
 <li><p>全局状态管理器（非 Vuex）：<br>虽然 Vuex 是 Vue 中常用的状态管理库，但有时候我们可能希望实现一个简单的全局状态管理器作为单例存在。这个管理器可以管理一些简单的全局状态，并在需要时提供访问和修改这些状态的接口。</p>
 </li>
 <li><p>API 服务层：<br>当与后端 API 进行交互时，可以创建一个单例的 API 服务层来封装所有的 API 请求。这样，整个应用就可以通过这个唯一的 API 服务实例来发送请求，避免了在每个组件中都单独创建 API 请求逻辑的冗余。</p>
+<span id="more"></span>
 </li>
 </ul>
 <h3 id="浏览器有哪些单位"><a href="#浏览器有哪些单位" class="headerlink" title="浏览器有哪些单位"></a>浏览器有哪些单位</h3><p>px em rem vh vw<br>px 是绝对单位<br>vh vw 根据浏览器窗口大小改变<br>em rem 是相对单位 em 根据自身或者祖先元素的 font-size 来计算 rem 根据 html 标签的 font-size 来计算</p>
