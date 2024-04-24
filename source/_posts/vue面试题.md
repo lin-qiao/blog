@@ -5,6 +5,32 @@ tags:
 categories: 面试题
 ---
 
+### created 和 mounted 的区别
+
+created 在实例创建后调用，可以获取到 this，无法获取到 dom, 可以进行一些接口请求
+mounted 在实例挂载 dom 后调用，可以通过 nextTick 获取 dom 元素，ref 等
+
+### computed 和 watch 有什么区别
+
+1、computed 是计算属性，watch 是监听 data 中数据变化
+2、computed 有缓存功能， 可以设置 get 和 set, 可以直接在模板中用
+3、watch 支持异步， computed 不支持
+4、computed 第一次加载就触发，watch 第一次加载不触发
+5、computed 中的函数必须调用 return；watch 不是。
+6、使用场景：
+computed：一个属性受到多个属性影响，如：购物车商品结算。
+watch：一个数据影响多条数据，如：搜索数据。
+
+immediate 组件创建时刻执行与否
+immediate: true,第一次加载时监听（默认为 false）
+deep 深度监听 不推荐使用(非常的消耗性能)
+监听的属性是对象的话 不开启 deep 对象子属性变化不会触发 watch
+开启了 deep 对象内部所有子属性变化 都会触发 watch
+
+### 权限控制
+
+在 beforeEach 中判断是否已经请求过路由表，有就用本地的，没有就重新请求，然后通过 addRoutes 添加到 vue 路由中去，这样会保证每次刷新路由都不会丢失
+
 ### vue2 和 vue3 的区别
 
 - 1、 vue3 引入 composition Api 相比 vue2 代码块逻辑更清楚。
