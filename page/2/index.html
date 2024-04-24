@@ -230,6 +230,247 @@
             
               
                 
+                <a class="post-title-link" href="/blog/2020/02/27/javascript%E8%BF%9B%E9%98%B6/%E9%9D%9E%E5%92%8C%E4%B8%94%E8%BF%90%E7%AE%97%E7%AC%A6/" itemprop="url">
+                  js &&和||返回值
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-02-27T00:00:00+08:00" content="2020-02-27">
+              2020-02-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript进阶</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>&amp;&amp;首先计算其左边的表达式，</li>
+<li>如果它的值为false或可被转换为false(null、NaN、0或undefined),那么将返回左边表达式的值</li>
+<li>否则，它将计算右边的表达式</li>
+<li>并返回这个表达式结果作为 &amp;&amp;运算的结果</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span> &amp;&amp; <span class="literal">undefined</span></span><br><span class="line"><span class="comment">// a null</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span> &amp;&amp; <span class="string">&#x27;bb&#x27;</span></span><br><span class="line"><span class="comment">// a null</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;aa&#x27;</span> &amp;&amp; <span class="literal">null</span></span><br><span class="line"><span class="comment">// a null</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;aa&#x27;</span> &amp;&amp; <span class="string">&#x27;bb&#x27;</span></span><br><span class="line"><span class="comment">// a bb</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>||首先计算其左边的表达式</li>
+<li>如果它的值不为false或不可被转换为false(null、NaN、0或undefined),那么将返回左边表达式的值</li>
+<li>否则，它将计算右边的表达式</li>
+<li>并返回这个表达式结果作为||运算的结果。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span> || <span class="literal">undefined</span>  <span class="comment">//左边值可以转为false, 计算右边的值</span></span><br><span class="line"><span class="comment">// a undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span> || <span class="string">&#x27;bb&#x27;</span></span><br><span class="line"><span class="comment">// a bb</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;aa&#x27;</span> || <span class="literal">null</span></span><br><span class="line"><span class="comment">// a aa</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">&#x27;aa&#x27;</span> || <span class="string">&#x27;bb&#x27;</span></span><br><span class="line"><span class="comment">// a aa</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/blog/2020/01/15/javascript%E8%BF%9B%E9%98%B6/%E7%BB%A7%E6%89%BF/" itemprop="url">
+                  实现继承的几种方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-01-15T00:00:00+08:00" content="2020-01-15">
+              2020-01-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/blog/categories/javascript%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript进阶</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <hr>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/blog/2020/01/15/javascript%E8%BF%9B%E9%98%B6/%E7%BB%A7%E6%89%BF/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/blog/2020/01/07/javascript%E8%BF%9B%E9%98%B6/prototype/" itemprop="url">
                   prototype, __proto__, constructor
                 </a>
@@ -1162,247 +1403,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/09/04/git_v2/" itemprop="url">
-                  Git远程操作详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-04T00:00:00+08:00" content="2017-09-04">
-              2017-09-04
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Git是目前最流行的版本管理系统，学会Git几乎成了开发者的必备技能。<br>Git有很多优势，其中之一就是远程操作非常简便。本文详细介绍5个Git命令，它们的概念和用法，理解了这些内容，你就会完全掌握Git远程操作。</p>
-<ul>
-<li>git clone</li>
-<li>git remote</li>
-<li>git fetch</li>
-<li>git pull</li>
-<li>git push<br><img src="http://image.beekka.com/blog/2014/bg2014061202.jpg" alt="images">
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2017/09/04/git_v2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/blog/2017/03/03/vue/" itemprop="url">
-                  Vue 要点总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-03T00:00:00+08:00" content="2017-03-03">
-              2017-03-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/blog/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="初识-vue"><a href="#初识-vue" class="headerlink" title="初识 vue"></a>初识 vue</h2><h3 id="1-vue-到底是什么"><a href="#1-vue-到底是什么" class="headerlink" title="(1) vue 到底是什么?"></a>(1) vue 到底是什么?</h3><ul>
-<li>一个 mvvm 框架(库)、和 angular 类似</li>
-<li>比较容易上手、小巧</li>
-<li>官网:<a href="http://cn.vuejs.org/">http://cn.vuejs.org/</a></li>
-<li>手册： <a href="http://cn.vuejs.org/api/">http://cn.vuejs.org/api/</a></li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/blog/2017/03/03/vue/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1448,7 +1448,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
